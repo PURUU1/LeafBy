@@ -93,19 +93,6 @@ app.MapRazorPages()
 await PlantCatalogSeeder.SeedAsync(app.Services);
 
 // To ensure the identity inserts are respected
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    var connection = db.Database.GetDbConnection();
-    await connection.OpenAsync();
-    var command = connection.CreateCommand();
-    command.CommandText = "SET IDENTITY_INSERT [PlantCatalog] ON";
-    await command.ExecuteNonQueryAsync();
 
-    // ... insert your data ...
-
-    command.CommandText = "SET IDENTITY_INSERT [PlantCatalog] OFF";
-    await command.ExecuteNonQueryAsync();
-}
 app.MapHub<LeafBy.Hubs.ChatHub>("/chatHub");
 app.Run();

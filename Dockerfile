@@ -4,8 +4,10 @@ WORKDIR /src
 
 # Copy everything and build the project
 COPY . .
-RUN dotnet restore "LeafBy.csproj"
-RUN dotnet publish "LeafBy.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# Notice the added "LeafBy/" folder path here!
+RUN dotnet restore "LeafBy/LeafBy.csproj"
+RUN dotnet publish "LeafBy/LeafBy.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Use the .NET 9 Runtime to run the app
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
