@@ -1,0 +1,63 @@
+﻿@* @page
+@model ShowRecoveryCodesModel
+@{
+    ViewData["Title"] = "Recovery codes";
+    ViewData["ActivePage"] = "TwoFactorAuthentication";
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h3>@ViewData["Title"]</h3>
+<div class="alert alert-warning" role="alert">
+    <p>
+        <strong>Put these codes in a safe place.</strong>
+    </p>
+    <p>
+        If you lose your device and don't have the recovery codes you will lose access to your account.
+    </p>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        @for (var row = 0; row < Model.RecoveryCodes.Length; row += 2)
+        {
+            <code class="recovery-code">@Model.RecoveryCodes[row]</code><text>&nbsp;</text><code class="recovery-code">@Model.RecoveryCodes[row + 1]</code><br />
+        }
+    </div>
+</div> *@
+
+
+
+@page
+@model ShowRecoveryCodesModel
+@{
+    ViewData["Title"] = "Recovery Codes";
+    ViewData["ActivePage"] = "TwoFactorAuthentication";
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<h3 class="fw-bold mb-4" style="color: #0c3b2e;">@ViewData["Title"]</h3>
+
+<div class="row">
+    <div class="col-md-8 col-lg-6">
+
+        <div class="p-4 rounded-4 mb-4" style="background-color: rgba(216, 67, 21, 0.05); border-left: 4px solid #d84315;">
+            <p class="fw-bold" style="color: #d84315;">
+                <i class="fas fa-shield-alt me-2"></i> Put these codes in a safe place.
+            </p>
+            <p class="text-muted small mb-0">
+                If you lose your device and don't have the recovery codes, you will lose access to your account.
+            </p>
+        </div>
+
+        <div class="bg-light p-4 rounded-4 text-center border" style="font-family: monospace; font-size: 1.25rem; letter-spacing: 2px; color: #0c3b2e;">
+            @for (var row = 0; row < Model.RecoveryCodes.Length; row += 2)
+            {
+                <div class="row py-2 border-bottom border-white">
+                    <div class="col-6">@Model.RecoveryCodes[row]</div>
+                    <div class="col-6">@Model.RecoveryCodes[row + 1]</div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

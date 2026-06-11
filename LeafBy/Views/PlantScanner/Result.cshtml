@@ -1,0 +1,328 @@
+﻿@model LeafBy.Models.PlantScanResult
+
+<style>
+    /* Premium Card Styling */
+    .custom-card {
+        background-color: #ffffff;
+        border: 1px solid rgba(0,0,0,0.04);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        padding: 30px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .custom-card:hover {
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+        }
+
+    /* Typography Upgrades */
+    .section-title {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #87958b;
+        font-weight: 600;
+        font-size: 0.85rem;
+    }
+
+    .main-stat {
+        color: #0c3b2e;
+        font-weight: 800;
+        font-size: 1.7rem;
+        margin-bottom: 12px;
+    }
+
+    /* Inner Cards for Remedies */
+    .inner-info-card {
+        background-color: #f4f6f3;
+        border: 1px solid #ebf0e9;
+    }
+
+    /* Hero Image */
+    .plant-hero-img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 24px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+</style>
+
+<div class="container mt-4 mb-5">
+
+    <div class="row mb-4">
+        <div class="col-12 text-center position-relative">
+            @if (!string.IsNullOrEmpty(ViewBag.ImageBase64 as string))
+            {
+                <img src="data:image/jpeg;base64,@ViewBag.ImageBase64" id="heroImage" class="plant-hero-img" alt="Scanned Subject">
+            }
+            else
+            {
+                <img src="https://placehold.co/1200x400/2c4c3b/ffffff?text=Scan+Result" class="plant-hero-img" alt="Placeholder">
+            }
+
+            <span class="badge rounded-pill bg-dark position-absolute top-0 end-0 m-4 fs-6 px-3 py-2 shadow-sm">
+                <i class="bi bi-upc-scan me-1"></i> @(Model?.ScanCategory ?? "Unknown") Scan
+            </span>
+        </div>
+    </div>
+
+    @if (Model?.ScanCategory == "Plant")
+    {
+        <div class="mb-4">
+            <h2 class="fw-bold mb-0" style="color: #0c3b2e;">@(Model.PlantName ?? "Unknown Plant")</h2>
+            <p class="text-muted fst-italic fs-5">@(Model.ScientificName ?? "Botanical name unavailable")</p>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-6">
+                <div class="custom-card h-100">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-brightness-high fs-4 me-2 text-warning"></i>
+                        <h6 class="section-title mb-0">Sunlight Needs</h6>
+                    </div>
+                    <h3 class="main-stat">@(Model.Sunlight?.Amount ?? "Moderate")</h3>
+                    <p class="text-muted small mb-0" style="line-height: 1.6;">
+                        @(Model.Sunlight?.Detail ?? "Place in a well-lit area.")
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="custom-card h-100">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-droplet-half fs-4 me-2 text-info"></i>
+                        <h6 class="section-title mb-0">Watering Schedule</h6>
+                    </div>
+                    <h3 class="main-stat">@(Model.Watering?.Amount ?? "Regularly")</h3>
+                    <p class="text-muted small mb-0" style="line-height: 1.6;">
+                        @(Model.Watering?.Detail ?? "Check soil moisture before watering.")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="custom-card h-100">
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="bi bi-layers fs-5 me-2" style="color: #1a422b;"></i>
+                        <h5 class="fw-bold mb-0" style="color: #1a422b;">Custom Soil Mix</h5>
+                    </div>
+
+                    @if (Model.SoilMix != null && Model.SoilMix.Any())
+                    {
+                        var palettes = new[] {
+                                new { bg = "#d8e8dc", text = "#2d5e3c", bar = "#4f6e59" },
+                                new { bg = "#d5f0e1", text = "#1f6e43", bar = "#1f5c3b" },
+                                new { bg = "#fadbd8", text = "#7b241c", bar = "#641e16" }
+                                };
+                        int colorIndex = 0;
+
+                        @foreach (var soil in Model.SoilMix)
+                        {
+                            var theme = palettes[colorIndex % palettes.Length];
+                            colorIndex++;
+
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge rounded-pill" style="background-color: @theme.bg; color: @theme.text; font-size: 0.75rem; padding: 0.45em 0.9em; letter-spacing: 0.5px;">
+                                        @soil.Name.ToUpper()
+                                    </span>
+                                    <span class="fw-bold" style="color: #1a422b; font-size: 0.9rem;">@soil.Percentage%</span>
+                                </div>
+                                <div class="progress" style="height: 8px; border-radius: 10px; background-color: #e9ecef;">
+                                    <div class="progress-bar" role="progressbar" style="width: @soil.Percentage%; background-color: @theme.bar; border-radius: 10px;"></div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <hr class="text-muted opacity-25 mt-4 mb-3">
+                    <p class="text-muted small mb-0" style="line-height: 1.6;">
+                        <i class="bi bi-info-circle me-1"></i> @(Model.SoilNote ?? "Ensure pot has proper drainage.")
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="custom-card h-100">
+                    <div class="d-flex align-items-center mb-4">
+                        <i class="bi bi-flask fs-5 me-2" style="color: #1a422b;"></i>
+                        <h5 class="fw-bold mb-0" style="color: #1a422b;">Remedies & Nutrition</h5>
+                    </div>
+
+                    @if (Model.Nutrition?.Commercial != null)
+                    {
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="bi bi-moisture text-muted me-2"></i>
+                                <span class="text-muted fw-bold small text-uppercase" style="letter-spacing: 0.5px; font-size: 0.75rem;">Commercial Fertilizer</span>
+                            </div>
+                            <div class="inner-info-card p-3 rounded-4">
+                                <h6 class="fw-bold mb-3" style="color: #1a422b;">@Model.Nutrition.Commercial.Name</h6>
+                                <ul class="list-unstyled mb-0 small" style="color: #4a554e; line-height: 1.6;">
+                                    <li class="mb-2"><i class="bi bi-check-circle me-2 text-success"></i> @Model.Nutrition.Commercial.Benefits</li>
+                                    <li><i class="bi bi-calendar-check me-2 text-muted"></i> @Model.Nutrition.Commercial.Schedule</li>
+                                </ul>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model.Nutrition?.Organic != null)
+                    {
+                        <div>
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="bi bi-leaf text-muted me-2"></i>
+                                <span class="text-muted fw-bold small text-uppercase" style="letter-spacing: 0.5px; font-size: 0.75rem;">Organic Home Remedy</span>
+                            </div>
+                            <div class="inner-info-card p-3 rounded-4" style="background-color: #fff8f5; border-color: #ffe8e0;">
+                                <h6 class="fw-bold mb-2" style="color: #8a3a29;">@Model.Nutrition.Organic.Name</h6>
+                                <p class="small mb-2" style="color: #a85440; line-height: 1.5;">@Model.Nutrition.Organic.Benefits</p>
+                                <em class="small text-muted d-block" style="border-left: 2px solid #e0b4ab; padding-left: 8px;">"@Model.Nutrition.Organic.Recipe"</em>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model.HomeRemedy != null)
+                    {
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="bi bi-flower1 text-muted me-2"></i>
+                                <span class="text-muted fw-bold small text-uppercase" style="letter-spacing: 0.5px; font-size: 0.75rem;">
+                                    @Model.HomeRemedy.Type
+                                </span>
+                            </div>
+
+                            <div class="inner-info-card p-3 rounded-4" style="background-color: #f8fcf9; border: 1px solid #e2ece7;">
+                                <h6 class="fw-bold mb-3" style="color: #1a422b;">@Model.HomeRemedy.Title</h6>
+
+                                <p class="small mb-3" style="color: #4a554e; font-style: italic;">
+                                    @Model.HomeRemedy.Description
+                                </p>
+
+                                <div class="small" style="color: #4a554e; line-height: 1.6;">
+                                    <p class="fw-bold mb-1"><i class="bi bi-journal-text me-2 text-success"></i>Instructions:</p>
+                                    <span class="text-muted">@Model.HomeRemedy.Instructions</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    else if (Model?.ScanCategory == "Pest")
+    {
+        <div class="mb-4 d-flex align-items-center">
+            <h2 class="fw-bold mb-0 me-3" style="color: #8a3a29;">@(Model.PestName ?? "Unknown Pest")</h2>
+            <span class="badge bg-danger rounded-pill px-3 py-2">Threat Level: @(Model.ThreatLevel ?? "Unknown")</span>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-12">
+                <div class="custom-card border-danger border-opacity-25">
+                    <h5 class="fw-bold text-danger mb-4"><i class="bi bi-bug-fill me-2"></i> Eradication Plan</h5>
+
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="p-3 rounded-4" style="background-color: #f8ecec; border: 1px solid #f1d6d6;">
+                                <h6 class="fw-bold text-danger"><i class="bi bi-shield-shaded me-2"></i> Commercial Treatment</h6>
+                                <p class="small mb-0 mt-2">@(Model.Treatment?.Commercial ?? "Consult a local nursery for targeted pesticides.")</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 rounded-4" style="background-color: #f4f6f3; border: 1px solid #ebf0e9;">
+                                <h6 class="fw-bold text-success"><i class="bi bi-flower1 me-2"></i> Organic Treatment</h6>
+                                <p class="small mb-0 mt-2">@(Model.Treatment?.Organic ?? "Try wiping leaves with a mild neem oil solution.")</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+                    <p class="text-muted small mb-0"><i class="bi bi-info-circle me-1"></i> <strong>Prevention Tip:</strong> @Model.PreventionTip</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    else if (Model?.ScanCategory == "Disease")
+    {
+        <div class="mb-4 d-flex align-items-center">
+            <h2 class="fw-bold mb-0 me-3 text-warning text-darken-2">@(Model.Diagnosis ?? "Unknown Issue")</h2>
+            <span class="badge bg-warning text-dark rounded-pill px-3 py-2">Severity: @(Model.Severity ?? "Unknown")</span>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-12">
+                <div class="custom-card border-warning border-opacity-50">
+                    <h5 class="fw-bold text-dark mb-3"><i class="bi bi-heart-pulse-fill text-warning me-2"></i> Diagnosis & Symptoms</h5>
+                    <p class="mb-4 text-muted">@Model.Symptoms</p>
+
+                    <h5 class="fw-bold text-dark mb-3 mt-4"><i class="bi bi-clipboard2-check-fill text-success me-2"></i> Immediate Action Plan</h5>
+                    <ul class="list-group list-group-flush rounded-3 border">
+                        @if (Model.ActionPlan != null && Model.ActionPlan.Any())
+                        {
+                            foreach (var step in Model.ActionPlan)
+                            {
+                                <li class="list-group-item bg-transparent border-bottom py-3">
+                                    <i class="bi bi-arrow-right-short text-success fs-5 me-2 align-middle"></i> @step
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="list-group-item text-muted">No specific action steps provided. Isolate the plant to be safe.</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (Model.ScanCategory == "Plant")
+{
+    
+<div class="text-center mt-4">
+    <button type="button" class="btn btn-success fw-bold px-5 py-3 shadow-sm"
+            data-bs-toggle="modal"
+            data-bs-target="#addPlantModal"
+            onclick="triggerSmartModal()">
+        <i class="fas fa-leaf me-2"></i> Save Plant to Garden
+    </button>
+</div>
+}
+@section Scripts {
+    <script>
+        function triggerSmartModal() {
+            // 1. Auto-fill the visible text boxes
+            let commonName = '@(Model.PlantName?.Replace("'", "\\'") ?? "")';
+            if(commonName !== "") {
+                $('input[name="CommonName"]').val(commonName);
+                $('input[name="Nickname"]').val(commonName);
+            }
+
+            // 2. THE FIX: Grab the image directly from the loaded HTML element
+            let heroImgElement = $('#heroImage');
+
+            if (heroImgElement.length > 0) {
+                // Get the full "data:image/jpeg;base64,..." string
+                let fullDataUrl = heroImgElement.attr('src');
+
+                // Show it in the circular preview
+                $("#previewImg").attr("src", fullDataUrl).show();
+                $("#cameraIcon").hide();
+                $("#imagePreview").css("border", "none");
+
+                // Strip the HTML prefix to get pure Base64 for the C# Controller
+                let pureBase64 = fullDataUrl.split(',')[1];
+                $('#hiddenBase64').val(pureBase64);
+            }
+
+            // 3. Serialize the AI result into JSON for the backend
+            let rawJsonData = @Html.Raw(Json.Serialize(Model));
+            $('#hiddenRawAiJson').val(JSON.stringify(rawJsonData));
+        }
+    </script>
+}

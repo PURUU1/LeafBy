@@ -1,0 +1,309 @@
+﻿@model List<LeafBy.ViewModels.CalendarTaskViewModel>
+
+@section Styles {
+    <style>
+        /* Mobile Responsive Calendar Fixes - KEEPS YOUR EXACT DESIGN */
+        .calendar-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+            .calendar-wrapper::-webkit-scrollbar {
+                display: none;
+            }
+
+        .calendar-header-grid,
+        .calendar-dates-grid {
+            min-width: 600px; /* Forces calendar to stay wide enough to read */
+        }
+    </style>
+}
+
+<div class="row g-4 mt-3">
+
+    <div class="col-lg-8">
+        <div class="calendar-card shadow-sm border">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+                <div>
+                    <h2 class="calendar-title" id="calendarMonthYearText" style="font-size: 2.5rem;">October 2023</h2>
+                    <p class="text-muted mt-1" style="font-size: 0.9rem;">Autumn Equinox Cycle</p>
+                </div>
+                <div class="d-flex gap-1">
+                    <button class="btn btn-light border rounded-circle" id="btnPrevMonth"><i class="bi bi-chevron-left"></i></button>
+                    <button class="btn btn-light border rounded-circle" id="btnNextMonth"><i class="bi bi-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="calendar-wrapper">
+                <div class="calendar-header-grid">
+                    <div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div><div>SUN</div>
+                </div>
+                <div class="calendar-dates-grid" id="calendarGrid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="task-list-wrapper shadow-sm border d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-bold mb-0" style="color: #0c3b2e;">All Tasks</h4>
+                <span class="badge bg-success rounded-pill" id="taskCountBadge">0</span>
+            </div>
+            <div id="masterTaskList" class="flex-grow-1 overflow-y-auto" style="max-height: 550px;">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="taskDetailModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow" style="border-radius: 16px;">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold" id="taskModalLabel" style="color: #0c3b2e;">Task Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="task-icon-box bg-light text-dark fs-3" id="modalTaskIcon" style="width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-list-task"></i>
+                    </div>
+                    <div>
+                        <h4 class="mb-0 fw-bold" id="modalTaskTitle">Task Name</h4>
+                        <span class="badge bg-secondary" id="modalTaskType">Category</span>
+                        <small class="text-muted ms-2" id="modalTaskDate">Date</small>
+                    </div>
+                </div>
+                <p class="text-muted mb-0" id="modalTaskDesc">Task description will appear here...</p>
+                <input type="hidden" id="modalTaskId" />
+            </div>
+            <div class="modal-footer border-0 pt-0 d-flex justify-content-between">
+                <button type="button" class="btn btn-outline-danger px-4" id="btnDeleteTask" style="border-radius: 8px;">
+                    <i class="bi bi-trash"></i> Delete
+                </button>
+                <button type="button" class="btn btn-success px-4" id="btnCompleteTask" style="border-radius: 8px; background-color: #1a7353; border: none;">
+                    <i class="bi bi-check-circle"></i> Mark Complete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            // --- 1. STATE MANAGEMENT ---
+            let allFetchedTasks = [];
+            let currentDate = new Date();
+
+            loadCalendarData();
+
+            // --- 2. NAVIGATION BUTTONS ---
+            $('#btnPrevMonth').click(function () {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                loadCalendarData();
+            });
+
+            $('#btnNextMonth').click(function () {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                loadCalendarData();
+            });
+
+            // --- 3. FETCH DATA FROM C# BACKEND ---
+            function loadCalendarData() {
+                const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                $('#calendarMonthYearText').text(`${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`);
+
+                $.ajax({
+                    url: '/Home/GetTasks',
+                    type: 'GET',
+                    success: function (response) {
+                        allFetchedTasks = response.map(t => {
+                            let parts = t.start.split('-');
+                            return {
+                                id: t.id,
+                                title: t.title,
+                                year: parseInt(parts[0]),
+                                month: parseInt(parts[1]) - 1,
+                                day: parseInt(parts[2]),
+                                type: t.type ? t.type.toLowerCase() : '',
+                                desc: t.description || 'No description provided.',
+                                isCompleted: t.isCompleted,
+                                icon: getIconForType(t.type),
+                                theme: getThemeForType(t.type)
+                            };
+                        });
+
+                        let tasksForThisMonth = allFetchedTasks.filter(t => t.month === currentDate.getMonth() && t.year === currentDate.getFullYear());
+                        renderMasterList(tasksForThisMonth);
+                        renderCalendarGrid(tasksForThisMonth);
+                    },
+                    error: function () {
+                        console.error("Failed to load tasks from the database.");
+                    }
+                });
+            }
+
+            // --- 4. RENDER UI FUNCTIONS (RESTORED TO ORIGINAL) ---
+            function renderMasterList(tasks) {
+                const $listContainer = $('#masterTaskList');
+                $listContainer.empty();
+                $('#taskCountBadge').text(tasks.length);
+
+                tasks.forEach(task => {
+                    let completedStyle = task.isCompleted ? 'opacity: 0.5; text-decoration: line-through;' : '';
+                    let checkIcon = task.isCompleted ? 'bi-check-circle-fill text-success' : 'bi-circle text-muted';
+
+                    $listContainer.append(`
+                        <div class="task-list-item task-item-clickable ${task.theme}" style="${completedStyle}; cursor: pointer;" data-task-id="${task.id}">
+                            <div class="task-icon-box"><i class="bi ${task.icon}"></i></div>
+                            <div class="flex-grow-1">
+                                <h6 class="fw-bold mb-1" style="color: #495057;">${task.title}</h6>
+                                <p class="text-muted small mb-0">Day ${task.day} • ${task.desc}</p>
+                            </div>
+                            <button class="btn btn-sm btn-light border-0"><i class="bi ${checkIcon} fs-5"></i></button>
+                        </div>
+                    `);
+                });
+            }
+
+            function renderCalendarGrid(tasks) {
+                const $grid = $('#calendarGrid');
+                $grid.empty();
+
+                let year = currentDate.getFullYear();
+                let month = currentDate.getMonth();
+
+                let daysInMonth = new Date(year, month + 1, 0).getDate();
+                let firstDayOfWeek = new Date(year, month, 1).getDay();
+                let startOffset = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
+
+                for (let i = 0; i < startOffset; i++) {
+                    $grid.append(createDayCell('', true));
+                }
+
+                let today = new Date();
+                for (let i = 1; i <= daysInMonth; i++) {
+                    let isToday = (i === today.getDate() && month === today.getMonth() && year === today.getFullYear());
+                    let $cell = $(createDayCell(i, false, isToday));
+
+                    let dayTasks = tasks.filter(t => t.day === i);
+                    dayTasks.forEach(task => {
+                        let shortType = task.type ? task.type.charAt(0).toUpperCase() + task.type.slice(1) : 'Task';
+                        let completedStyle = task.isCompleted ? 'opacity: 0.5;' : '';
+
+                        $cell.append(`
+                            <div class="task-pill task-item-clickable ${task.theme}" style="${completedStyle}" data-task-id="${task.id}">
+                                <i class="bi ${task.icon}"></i> ${shortType}
+                            </div>
+                        `);
+                    });
+                    $grid.append($cell);
+                }
+
+                let totalCells = startOffset + daysInMonth;
+                let remainingCells = (totalCells % 7 === 0) ? 0 : 7 - (totalCells % 7);
+                for (let i = 1; i <= remainingCells; i++) {
+                    $grid.append(createDayCell('', true));
+                }
+            }
+
+            function createDayCell(dayNumber, isMuted, isCurrent = false) {
+                let cellClass = isMuted ? 'day-cell muted-day' : 'day-cell';
+                let numberClass = isCurrent ? 'day-number active-today' : 'day-number';
+                return `<div class="${cellClass}"><div class="${numberClass}">${dayNumber}</div></div>`;
+            }
+
+            // --- 5. MODAL INTERACTION & ACTIONS ---
+            $(document).on('click', '.task-item-clickable', function () {
+                let taskId = $(this).data('task-id');
+                let task = allFetchedTasks.find(t => t.id === taskId);
+
+                if (task) {
+                    $('#modalTaskId').val(task.id);
+                    $('#modalTaskTitle').text(task.title);
+                    $('#modalTaskDesc').text(task.desc);
+                    $('#modalTaskType').text(task.type.toUpperCase());
+                    $('#modalTaskDate').text(`${task.month + 1}/${task.day}/${task.year}`);
+
+                    let iconElement = $('#modalTaskIcon');
+                    iconElement.removeClass().addClass(`task-icon-box fs-3 ${task.theme}`);
+                    iconElement.html(`<i class="bi ${task.icon}"></i>`);
+
+                    if(task.isCompleted) {
+                        $('#btnCompleteTask').hide();
+                    } else {
+                        $('#btnCompleteTask').show();
+                    }
+
+                    var myModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('taskDetailModal'));
+                    myModal.show();
+                }
+            });
+
+            $('#btnCompleteTask').click(function () {
+                let taskId = $('#modalTaskId').val();
+                $.ajax({
+                    url: '/Home/CompleteTask',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ Id: parseInt(taskId) }),
+                    success: function (response) {
+                        if (response.success) {
+                            bootstrap.Modal.getOrCreateInstance(document.getElementById('taskDetailModal')).hide();
+                            loadCalendarData();
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
+            });
+
+            $('#btnDeleteTask').click(function () {
+                if(confirm("Are you sure you want to delete this task?")) {
+                    let taskId = $('#modalTaskId').val();
+                    $.ajax({
+                        url: '/Home/DeleteTask',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ Id: parseInt(taskId) }),
+                        success: function (response) {
+                            if (response.success) {
+                                bootstrap.Modal.getOrCreateInstance(document.getElementById('taskDetailModal')).hide();
+                                loadCalendarData();
+                            } else {
+                                alert(response.message);
+                            }
+                        }
+                    });
+                }
+            });
+
+            // --- 6. THEME HELPERS (RESTORED TO ORIGINAL) ---
+            function getIconForType(type) {
+                switch ((type || '').toLowerCase()) {
+                    case 'water': return 'bi-droplet';
+                    case 'sow': return 'bi-flower1';
+                    case 'prune': return 'bi-scissors';
+                    case 'fertilize': return 'bi-flask';
+                    case 'repot': return 'bi-box-seam';
+                    default: return 'bi-check2-circle';
+                }
+            }
+
+            function getThemeForType(type) {
+                switch ((type || '').toLowerCase()) {
+                    case 'water': return 'theme-water';
+                    case 'sow': return 'theme-sow';
+                    case 'prune': return 'theme-prune';
+                    case 'fertilize': return 'theme-fert';
+                    case 'repot': return 'theme-repot';
+                    default: return 'bg-light text-dark';
+                }
+            }
+        });
+    </script>
+}

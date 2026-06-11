@@ -1,0 +1,546 @@
+﻿@model LeafBy.ViewModels.PlantDetailViewModel
+
+@{
+    ViewData["Title"] = Model.Plant.CommonName;
+}
+
+<style>
+    /* --- Core Variables & Setup --- */
+    :root {
+        --bg-body: #F7F8F4;
+        --text-dark: #1A2B22;
+        --text-muted: #829388;
+        --card-radius: 20px;
+    }
+
+    body {
+        background-color: var(--bg-body);
+        color: var(--text-dark);
+    }
+
+    /* --- Hero Section --- */
+    .hero-container {
+        position: relative;
+        height: 420px;
+        border-radius: var(--card-radius);
+        overflow: hidden;
+        margin-top: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    }
+
+    .hero-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .hero-gradient {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60%;
+        background: linear-gradient(to top, rgba(15, 30, 20, 0.85), transparent);
+    }
+
+    .hero-title {
+        position: absolute;
+        bottom: 70px;
+        left: 40px;
+        color: white;
+        font-weight: 700;
+        font-size: 2.8rem;
+        letter-spacing: -0.5px;
+    }
+
+    /* --- Overlapping Care Widgets --- */
+    .care-widgets-row {
+        margin-top: -45px;
+        position: relative;
+        z-index: 10;
+        padding: 0 20px;
+    }
+
+    .care-widget {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: var(--card-radius);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        border: 1px solid rgba(255,255,255,0.5);
+        transition: transform 0.3s ease;
+    }
+
+        .care-widget:hover {
+            transform: translateY(-5px);
+        }
+
+    .icon-box {
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        margin-right: 16px;
+    }
+
+    .icon-sun {
+        background-color: #FFF0E8;
+        color: #FA7953;
+    }
+
+    .icon-water {
+        background-color: #EBF5ED;
+        color: #519069;
+    }
+
+    .icon-prune {
+        background-color: #EBF5ED;
+        color: #519069;
+    }
+
+    .widget-text h6 {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: var(--text-muted);
+        margin-bottom: 2px;
+        text-transform: uppercase;
+    }
+
+    .widget-text h4 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 2px;
+    }
+
+    .widget-text p {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin: 0;
+    }
+
+    /* --- Section Titles --- */
+    .section-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* --- Custom Soil Mix Card --- */
+    .soil-card {
+        background: white;
+        border-radius: var(--card-radius);
+        padding: 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+        height: 100%;
+    }
+
+    .soil-item {
+        margin-bottom: 20px;
+    }
+
+    .soil-label-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .soil-pill {
+        padding: 4px 10px;
+        border-radius: 8px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    .progress-track {
+        height: 6px;
+        border-radius: 10px;
+        background-color: #EBEBEB;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        border-radius: 10px;
+        width: 0%; /* Start at 0 for jQuery animation */
+    }
+
+    /* Dynamic pill colors */
+    .pill-1 {
+        background-color: #E3EFE6;
+        color: #447754;
+    }
+
+    .fill-1 {
+        background-color: #557F60;
+    }
+
+    .pill-2 {
+        background-color: #D6F1E3;
+        color: #32805A;
+    }
+
+    .fill-2 {
+        background-color: #244630;
+    }
+
+    .pill-3 {
+        background-color: #FCE1DC;
+        color: #9E4D43;
+    }
+
+    .fill-3 {
+        background-color: #84392D;
+    }
+
+    .soil-desc {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-top: 30px;
+        line-height: 1.6;
+    }
+
+    /* --- Remedies & Nutrition --- */
+    .remedy-wrapper {
+        background: white;
+        border-radius: var(--card-radius);
+        padding: 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+    }
+
+    .remedy-box {
+        border-radius: 16px;
+        padding: 24px;
+        height: 100%;
+    }
+
+    .box-commercial {
+        background-color: #F4F8F5;
+    }
+
+    .box-organic {
+        background-color: #FFF6F5;
+    }
+
+    .remedy-box h5 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .remedy-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 0.8rem;
+        color: var(--text-dark);
+        line-height: 1.6;
+    }
+
+        .remedy-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+            .remedy-list li::before {
+                font-family: "Font Awesome 6 Free";
+                font-weight: 900;
+                position: absolute;
+                left: 0;
+                top: 2px;
+                color: var(--text-muted);
+            }
+
+    .li-check::before {
+        content: "\f058";
+        color: #829388 !important;
+    }
+
+    .li-warn::before {
+        content: "\f071";
+        color: #829388 !important;
+    }
+
+    .organic-text {
+        font-size: 0.8rem;
+        color: #A3483B;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .organic-quote {
+        font-size: 0.75rem;
+        font-style: italic;
+        color: var(--text-dark);
+        background: rgba(255,255,255,0.6);
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .remedy-type-title {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* --- Thermal Sensitivity --- */
+    .thermal-card {
+        background-color: #1F4633;
+        border-radius: var(--card-radius);
+        padding: 30px;
+        color: white;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        margin-top: 24px;
+    }
+
+    .thermal-icon {
+        font-size: 2rem;
+        color: #A3B5AA;
+        opacity: 0.8;
+    }
+
+    .thermal-text h5 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .thermal-text p {
+        font-size: 0.85rem;
+        color: #D1DCD6;
+        margin: 0;
+        line-height: 1.6;
+    }
+</style>
+
+<div class="container mb-5 pb-5">
+
+    <div class="hero-container">
+        <img src="@Model.Plant.ImageUrl" alt="@Model.Plant.CommonName" class="hero-img" onerror="this.src='/images/plants/default-plant.jpg'">
+        <div class="hero-gradient"></div>
+        <h1 class="hero-title">@Model.Plant.CommonName</h1>
+    </div>
+
+    <div class="row care-widgets-row g-3">
+        <div class="col-md-4">
+            <div class="care-widget">
+                <div class="icon-box icon-sun"><i class="fas fa-sun"></i></div>
+                <div class="widget-text">
+                    <h6>SUNLIGHT</h6>
+                    <h4>@Model.Plant.SunRequirement</h4>
+                    <p>@(string.IsNullOrEmpty(Model.CareProfile.SunlightDetails) ? "See general care guidelines" : Model.CareProfile.SunlightDetails)</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="care-widget">
+                <div class="icon-box icon-water"><i class="fas fa-tint"></i></div>
+                <div class="widget-text">
+                    <h6>WATERING</h6>
+                    <h4>@Model.Plant.WaterRequirement</h4>
+                    <p>@(string.IsNullOrEmpty(Model.CareProfile.WaterDetails) ? "Check topsoil moisture" : Model.CareProfile.WaterDetails)</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="care-widget">
+                <div class="icon-box icon-prune"><i class="fas fa-cut"></i></div>
+                <div class="widget-text">
+                    <h6>PRUNING</h6>
+                    <h4>@(string.IsNullOrEmpty(Model.CareProfile.PruningRequirement) ? "As needed" : Model.CareProfile.PruningRequirement)</h4>
+                    <p>@(string.IsNullOrEmpty(Model.CareProfile.PruningDetails) ? "Remove dead foliage" : Model.CareProfile.PruningDetails)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 g-4">
+
+        <div class="col-lg-4">
+            <div class="soil-card">
+                <h5 class="section-title"><i class="fas fa-layer-group text-muted"></i> Custom Soil Mix</h5>
+
+                @if (Model.Soil != null && !string.IsNullOrEmpty(Model.Soil.Component1))
+                {
+                    <div class="soil-item">
+                        <div class="soil-label-row">
+                            <span class="soil-pill pill-1">@Model.Soil.Component1</span>
+                            <span class="fw-bold fs-6">@Model.Soil.Percentage1%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill fill-1 jq-progress" data-width="@Model.Soil.Percentage1%"></div>
+                        </div>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.Soil.Component2))
+                    {
+                        <div class="soil-item">
+                            <div class="soil-label-row">
+                                <span class="soil-pill pill-2">@Model.Soil.Component2</span>
+                                <span class="fw-bold fs-6">@Model.Soil.Percentage2%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill fill-2 jq-progress" data-width="@Model.Soil.Percentage2%"></div>
+                            </div>
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.Soil.Component3))
+                    {
+                        <div class="soil-item">
+                            <div class="soil-label-row">
+                                <span class="soil-pill pill-3">@Model.Soil.Component3</span>
+                                <span class="fw-bold fs-6">@Model.Soil.Percentage3%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill fill-3 jq-progress" data-width="@Model.Soil.Percentage3%"></div>
+                            </div>
+                        </div>
+                    }
+
+                    <p class="soil-desc">@Model.Soil.Description</p>
+                }
+                else
+                {
+                    <p class="soil-desc mt-0">Standard well-draining potting soil is perfectly adequate for this plant.</p>
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+
+            <div class="remedy-wrapper">
+                <h5 class="section-title mb-4"><i class="fas fa-flask text-muted"></i> Remedies & Nutrition</h5>
+
+                 <div class="row g-3">
+                    <div class="col-md-6 mb-2">
+                        @if (Model.CareProfile != null)
+{
+    <div class="h-100">
+        <div class="d-flex align-items-center mb-2">
+            <i class="bi bi-clipboard-check text-muted me-2"></i>
+            <span class="text-muted fw-bold small text-uppercase" style="letter-spacing: 0.5px; font-size: 0.75rem;">
+                Care Guidelines
+            </span>
+        </div>
+        
+        <div class="inner-info-card p-4 rounded-4 d-flex flex-column justify-content-between" style="background-color: #f4f8f5; border: 1px solid #e2ece7; height: calc(100% - 30px);">
+            
+            <div class="mb-4">
+                <div class="d-flex align-items-center mb-1">
+                    <i class="bi bi-sun-fill text-warning me-2 fs-5"></i>
+                    <h6 class="fw-bold mb-0" style="color: #1a422b;">Sunlight</h6>
+                </div>
+                <p class="small mb-0" style="color: #4a554e; margin-left: 30px;">
+                    @Model.CareProfile.SunlightDetails
+                </p>
+            </div>
+
+            <div class="mb-4">
+                <div class="d-flex align-items-center mb-1">
+                    <i class="bi bi-droplet-fill text-info me-2 fs-5"></i>
+                    <h6 class="fw-bold mb-0" style="color: #1a422b;">Watering</h6>
+                </div>
+                <p class="small mb-0" style="color: #4a554e; margin-left: 30px;">
+                    @Model.CareProfile.WaterDetails
+                </p>
+            </div>
+
+            <div class="mb-4">
+                <div class="d-flex align-items-center mb-1">
+                    <i class="bi bi-scissors text-secondary me-2 fs-5"></i>
+                    <h6 class="fw-bold mb-0" style="color: #1a422b;">Pruning <span class="fw-normal text-muted small">(@Model.CareProfile.PruningRequirement)</span></h6>
+                </div>
+                <p class="small mb-0" style="color: #4a554e; margin-left: 30px;">
+                    @Model.CareProfile.PruningDetails
+                </p>
+            </div>
+
+            <div>
+                <div class="d-flex align-items-center mb-1">
+                    <i class="bi bi-thermometer-half text-danger me-2 fs-5"></i>
+                    <h6 class="fw-bold mb-0" style="color: #1a422b;">Temperature</h6>
+                </div>
+                <p class="small mb-0" style="color: #4a554e; margin-left: 30px;">
+                    @Model.CareProfile.ThermalSensitivity
+                </p>
+            </div>
+
+        </div>
+    </div>
+}
+                    </div> 
+
+                    <div class="col-md-6 mb-2">
+                        <div class="remedy-type-title" style="color: #A3483B;">
+                            <i class="fas fa-leaf"></i> Organic Home Remedy
+                        </div>
+                        <div class="remedy-box box-organic">
+                            @if (!string.IsNullOrEmpty(Model.OrganicRemedy.Title))
+                            {
+                                <h5>@Model.OrganicRemedy.Title</h5>
+                                <p class="organic-text">@Model.OrganicRemedy.Description</p>
+                                <div class="organic-quote">
+                                    "@Model.OrganicRemedy.Instructions"
+                                </div>
+                            }
+                            else
+                            {
+                                <p class="text-muted small">No organic home remedies currently recorded.</p>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.CareProfile.ThermalSensitivity))
+            {
+                <div class="thermal-card">
+                    <div class="thermal-icon">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                    <div class="thermal-text">
+                        <h5>Thermal Sensitivity</h5>
+                        <p>@Model.CareProfile.ThermalSensitivity</p>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Animate the progress bars when the page loads to give that smooth app feel
+            setTimeout(function() {
+                $('.jq-progress').each(function() {
+                    var targetWidth = $(this).attr('data-width');
+                    $(this).animate({
+                        width: targetWidth
+                    }, 1000);
+                });
+            }, 300);
+        });
+    </script>
+}

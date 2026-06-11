@@ -1,0 +1,108 @@
+﻿@using Microsoft.AspNetCore.Identity
+@* Updated to use the default IdentityUser *@
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+
+    var currentUser = await UserManager.GetUserAsync(User);
+
+    // Default IdentityUser doesn't have FirstName, so we use UserName or Email as a fallback
+    var displayName = currentUser?.UserName ?? currentUser?.Email ?? "Terrace Gardener";
+
+    // Extract the name before the '@' if it's an email address to make it look cleaner
+    if (displayName.Contains("@"))
+    {
+        displayName = displayName.Split('@')[0];
+    }
+
+    // Grab exactly the first character for the avatar
+    var initial = !string.IsNullOrEmpty(displayName) ? displayName.Substring(0, 1).ToUpper() : "T";
+}
+
+<style>
+    .dashboard-bg {
+        background-color: #f4f7f5;
+        min-height: calc(100vh - 70px);
+        padding-top: 3rem;
+        padding-bottom: 5rem;
+    }
+
+    .card-panel {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid #eaefe9;
+    }
+
+    .profile-avatar {
+        width: 60px;
+        height: 60px;
+        background-color: #2b7a4b;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0 auto;
+    }
+
+    .nav-pills .nav-link {
+        color: #4b5563;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        margin-bottom: 0.2rem;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+        .nav-pills .nav-link.active {
+            background-color: #e8f3ec;
+            color: #1a422b;
+            font-weight: 600;
+        }
+</style>
+
+<div class="dashboard-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card-panel p-4 text-center mb-3">
+
+                    <div class="profile-avatar mb-3 shadow-sm">
+                        @initial
+                    </div>
+
+                    <h5 class="fw-bold mb-0 text-capitalize">@displayName</h5>
+                    <p class="text-muted small">@currentUser?.Email</p>
+
+                    <hr class="my-4" style="border-color: #eaefe9;">
+
+                    <div class="nav flex-column nav-pills text-start">
+                        <a class="nav-link active" href="/Identity/Account/Manage"><i class="bi bi-person"></i> Profile</a>
+                        <a class="nav-link" href="/Identity/Account/Manage/ChangePassword"><i class="bi bi-shield-lock"></i> Password</a>
+                        <a class="nav-link" href="/Identity/Account/Manage/Email"><i class="bi bi-at"></i> Email</a>
+                        <a class="nav-link text-danger mt-3" href="/Identity/Account/Manage/PersonalData"><i class="bi bi-trash3"></i> Delete account</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8 col-lg-9">
+                <div class="d-flex align-items-center gap-2 mb-4">
+                    <i class="bi bi-gear fs-4" style="color: #1a422b;"></i>
+                    <h2 class="serif-heading mb-0">Account settings</h2>
+                </div>
+                <p class="text-muted mb-4">Manage your personal info, security, and preferences</p>
+
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

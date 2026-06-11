@@ -1,0 +1,60 @@
+﻿@* @page
+@model LoginWithRecoveryCodeModel
+@{
+    ViewData["Title"] = "Recovery code verification";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<p>
+    You have requested to log in with a recovery code. This login will not be remembered until you provide
+    an authenticator app code at log in or disable 2FA and log in again.
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.RecoveryCode" class="form-control" autocomplete="off" placeholder="RecoveryCode" />
+                <label asp-for="Input.RecoveryCode" class="form-label"></label>
+                <span asp-validation-for="Input.RecoveryCode" class="text-danger"></span>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} *@
+@page
+@model LoginWithRecoveryCodeModel
+@{
+    ViewData["Title"] = "Recovery Code Verification";
+}
+
+<h2 class="fw-bold mb-1" style="color: #0c3b2e;">Emergency Access</h2>
+<p class="text-muted mb-4">Log in using a backup recovery code.</p>
+
+<div class="p-3 bg-light rounded-4 mb-4 border-start border-4" style="border-color: #d84315 !important;">
+    <p class="small text-muted mb-0">
+        <i class="fas fa-info-circle me-1" style="color: #d84315;"></i>
+        This login will not be remembered until you provide an authenticator app code at log in or disable 2FA and log in again.
+    </p>
+</div>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger border-0 small" role="alert"></div>
+
+    <div class="mb-4">
+        <label asp-for="Input.RecoveryCode" class="form-label fw-bold small text-uppercase" style="color: #5a6d63;">Recovery Code</label>
+        <input asp-for="Input.RecoveryCode" class="form-control bg-light border-0 py-3" autocomplete="off" placeholder="Enter your code" />
+        <span asp-validation-for="Input.RecoveryCode" class="text-danger small"></span>
+    </div>
+
+    <button type="submit" class="btn w-100 py-3 rounded-pill fw-bold" style="background-color: #0c3b2e; color: white;">Verify & Log In</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

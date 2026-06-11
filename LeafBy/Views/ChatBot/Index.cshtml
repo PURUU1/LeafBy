@@ -1,0 +1,107 @@
+﻿<button class="btn btn-success rounded-circle shadow-lg" id="botToggleBtn" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; z-index: 1000;">
+    <i class="bi bi-robot fs-3"></i>
+</button>
+
+<div class="card shadow-lg" id="botWindow" style="display: none; position: fixed; bottom: 100px; right: 30px; width: 350px; height: 500px; z-index: 1000; border-radius: 15px; overflow: hidden;">
+    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center p-3">
+        <h5 class="mb-0"><i class="bi bi-robot me-2"></i> Leafy (AI Botanist)</h5>
+        <button type="button" class="btn-close btn-close-white" id="closeBot"></button>
+    </div>
+
+    <div class="card-body bg-light" id="chatHistory" style="overflow-y: auto; height: 350px;">
+        <div class="mb-3">
+            <div class="bg-white p-2 rounded shadow-sm d-inline-block border">
+                Hi! I'm Leafy, your AI Botanist. Ask me anything about plant care, pests, or garden planning!
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer bg-white p-2">
+        <div class="input-group">
+            <input type="text" id="chatInput" class="form-control" placeholder="Ask about a plant...">
+            <button class="btn btn-success" id="btnSendChat"><i class="bi bi-send-fill"></i></button>
+        </div>
+    </div>
+</div>
+
+            @section Scripts{
+    <script src="https://js.puter.com/v2/"></script>
+                <script>
+
+                
+                    $(document).ready(function() {
+        // Toggle Chat Window
+        $('#botToggleBtn').click(function() { $('#botWindow').fadeToggle(); });
+        $('#closeBot').click(function() { $('#botWindow').fadeOut(); });
+
+        // Handle Sending Message
+        $('#btnSendChat').click(sendMessage);
+        $('#chatInput').keypress(function(e) { if(e.which == 13) sendMessage(); });
+
+        function sendMessage() {
+            let msg = $('#chatInput').val().trim();
+            if (!msg) return;
+
+            // 1. Append User Message to UI
+            $('#chatHistory').append(`
+    <div class="mb-3 text-end">
+        <div class="bg-success text-white p-2 rounded shadow-sm d-inline-block">
+            ${msg}
+        </div>
+    </div>
+            `);
+
+            $('#chatInput').val(''); // Clear input
+            scrollToBottom();
+
+            // 2. Add a "Typing..." indicator
+            let typingId = 'typing-' + Date.now();
+            $('#chatHistory').append(`
+    <div class="mb-3" id="${typingId}">
+        <div class="bg-white p-2 rounded shadow-sm d-inline-block border text-muted">
+            <em>Leafy is thinking...</em>
+        </div>
+    </div>
+            `);
+            scrollToBottom();
+
+            // 3. Send to C# Backend
+            $.ajax({
+                url: '/ChatBot/AskBotanist',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ prompt: msg }),
+                success: function(response) {
+
+                    $('#' + typingId).remove(); // Remove "Typing..."
+                    Console.log(response)
+                        if(response.useAlt){
+                                puter.ai.chat(response.prompt, { model: 'gemini-1.5-flash' })
+        .then(response => {
+            console.log("AI says:", response.message.content);
+        });
+                        }
+                    // Append AI Response
+                    $('#chatHistory').append(`
+    <div class="mb-3">
+        <div class="bg-white p-2 rounded shadow-sm d-inline-block border">
+            ${response.answer}
+        </div>
+    </div>
+                    `);
+                    scrollToBottom();
+                },
+                error: function() {
+                    $('#' + typingId).remove();
+                    $('#chatHistory').append(`<div class="text-danger small">Error connecting to AI.</div>`);
+                }
+            });
+        }
+
+        function scrollToBottom() {
+            var chatHistory = $('#chatHistory');
+            chatHistory.scrollTop(chatHistory[0].scrollHeight);
+        }
+    });
+    </script>
+            }

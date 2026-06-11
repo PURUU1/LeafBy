@@ -1,0 +1,265 @@
+﻿<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);">
+            <div class="card-body d-flex align-items-center p-4">
+                <div class="me-4 text-success" style="font-size: 2.5rem;">
+                    <i class="bi bi-cloud-sun-fill" id="weatherIcon"></i>
+                </div>
+                <div>
+                    <h5 class="fw-bold mb-1" style="color: #004d40;">Smart Garden Assistant</h5>
+                    <p class="mb-0 text-dark" id="climateAdviceText">
+                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        Analyzing local weather data to generate optimal growing advice...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+  <!-- Row 2: My Plants -->
+    <div class="section-title">
+        <span>My Plants</span>
+        <a href="#" class="view-all-link">View All <i class="bi bi-arrow-right"></i></a>
+    </div>
+
+    <div class="horizontal-scroller mb-5">
+
+        @if (Model != null && Model.AppUser != null)
+        {
+            @foreach (var myPlant in Model.AppUser.MyPlants)
+            {
+
+                <div class="custom-card">
+                    <div class="card-img-wrapper bg-light">
+                        <!-- Placeholder representing the monstera -->
+                        <img src="@myPlant.ImageUrl" alt="Monstera">
+                        @* <div class="status-icon-badge text-success"><i class="bi bi-droplet-fill"></i></div> *@
+                        <div class="status-icon-badge text-success btn-delete-plant " data-plant-id="@myPlant.Id" data-plant-name="@myPlant.CommonName" data-bs-toggle="modal" data-bs-target="#deletePlantModal"><i class="bi bi-x-circle-fill"></i></div>
+
+                    </div>
+                    <h5 class="card-title">@myPlant.CommonName</h5>
+                    <p class="card-subtitle mb-0">@myPlant.Location</p>
+                    @{
+                        Console.WriteLine(@myPlant.Id);
+                    }
+                    <!-- NEW: Stats Section -->
+                    <div class="plant-stats-container">
+                        <div class="stat-item-small" title="Water Requirement">
+                            <i class="bi bi-droplet-fill icon-water-small"></i> @myPlant.WaterRequirement
+                        </div>
+                        <div class="stat-item-small" title="Sun Requirement">
+                            <i class="bi bi-brightness-high-fill icon-sun-small"></i> @myPlant.SunRequirement
+                        </div>
+                        <div class="stat-item-small" title="Health Status">
+                            <i class="bi bi-heart-pulse-fill icon-health-small"></i> @myPlant.HealthStatus
+                        </div>
+                    </div>
+
+                    <div>
+                        @{
+                        }
+                        @foreach(var taskI in Model.AppUser.MyTasks)
+                        {
+                            
+                            @* var taskWithPlant = Model.AppUser.MyTasks?.FirstOrDefault(x => x.MyPlantId.Equals(myPlant.Id)); *@
+                        @if (taskI != null && taskI.MyPlantId == myPlant.Id)
+                        {
+                                @if (taskI.Category.Equals("Fertilize"))
+                            {
+                                    <span class="tag-pill pill-green">@taskI.TaskName</span>
+                            }
+                                else if (taskI.Category.Equals("Sow"))
+                            {
+                                    <span class="tag-pill tag-gray">@taskI.TaskName</span>
+                            }
+                            else
+                            {
+                                    <span class="tag-pill tag-maroon">@taskI.TaskName</span>
+                            }
+                        }
+                        }         
+                    </div>
+                </div>
+            }
+        }
+
+        <!-- Empty card to represent the dashed addition area shown in the mockup edge -->
+        <div class="custom-card" style="background: transparent; border: 2px dashed #d1d5db; display: flex; align-items: center; justify-content: center; min-width: 150px; cursor: pointer;">
+            <i class="bi bi-plus text-muted" style="font-size: 2rem;"></i>
+        </div>
+
+    </div>
+
+
+<div class="modal fade" id="ecosystemModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-bottom-0 pb-0">
+                <h5 class="modal-title fw-bold">Where will this plant live?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pt-2">
+                <p class="text-muted mb-4">Select the environment to automatically generate tailored care and maintenance tasks.</p>
+
+                <input type="hidden" id="pendingPlantId" />
+
+                <div class="row g-3">
+                    <div class="col-6">
+                        <label class="w-100 h-100">
+                            <input type="radio" name="ecosystemChoice" value="Soil" class="d-none ecosystem-radio" checked>
+                            <div class="card text-center h-100 ecosystem-card cursor-pointer border-2" style="border-color: #28a745 !important;">
+                                <div class="card-body">
+                                    <i class="bi bi-flower3 fs-1 text-success mb-2 d-block"></i>
+                                    <h6 class="fw-bold">Terrace Pot / Soil</h6>
+                                    <small class="text-muted">Standard soil mixes and fertilizers.</small>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="col-6">
+                        <label class="w-100 h-100">
+                            <input type="radio" name="ecosystemChoice" value="Aquatic" class="d-none ecosystem-radio">
+                            <div class="card text-center h-100 ecosystem-card cursor-pointer border-2">
+                                <div class="card-body">
+                                    <i class="bi bi-water fs-1 text-info mb-2 d-block"></i>
+                                    <h6 class="fw-bold">Outdoor Pond</h6>
+                                    <small class="text-muted">Aquatic setups, lotus, and fish safe.</small>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top-0 pt-0 mt-3">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success px-4" onclick="confirmAddToGarden()">Add to Garden</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Styling for the selectable ecosystem cards */
+    .ecosystem-card {
+        transition: all 0.2s ease-in-out;
+        border: 2px solid transparent;
+    }
+
+        .ecosystem-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+        }
+
+    .ecosystem-radio:checked + .ecosystem-card {
+        border-color: #28a745 !important;
+        background-color: #f8fff9;
+    }
+</style>
+
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // 1. Fetch Smart Climate Advice instantly on page load
+            loadClimateAdvice();
+
+            // 2. Add visual toggling for the ecosystem cards
+            $('.ecosystem-radio').change(function() {
+                $('.ecosystem-card').css('border-color', 'transparent'); // Reset all
+                if(this.checked) {
+                    $(this).next('.ecosystem-card').css('border-color', '#28a745'); // Highlight selected
+                }
+            });
+        });
+
+        // --- FETCH SMART CLIMATE ADVICE ---
+        function loadClimateAdvice() {
+            $.ajax({
+                url: '/Plants/GetSmartClimateAdvice',
+                type: 'GET',
+                success: function (response) {
+                    // Update the banner text with the smart prediction
+                    $('#climateAdviceText').html(response.advice);
+
+                    // Optional: Change the icon if the weather is hot or cold
+                    if(response.advice.includes("°C outside")) {
+                        $('#weatherIcon').removeClass('bi-cloud-sun-fill text-success').addClass('bi-sun-fill text-danger');
+                    } else if (response.advice.includes("Cooler weather")) {
+                        $('#weatherIcon').removeClass('bi-cloud-sun-fill text-success').addClass('bi-thermometer-snow text-primary');
+                    }
+                },
+                error: function () {
+                    $('#climateAdviceText').html("Ready to help you grow your perfect garden!");
+                }
+            });
+        }
+
+        // --- NEW: ADD TO GARDEN FLOW ---
+
+        // Step A: Triggered when user clicks "Add" on a plant from the search/catalog
+        function initiateAddToGarden(plantId) {
+            // Store the ID temporarily in the hidden input
+            $('#pendingPlantId').val(plantId);
+
+            // Show the ecosystem selection modal
+            $('#ecosystemModal').modal('show');
+        }
+
+        // Step B: Triggered when user clicks "Add to Garden" inside the modal
+        function confirmAddToGarden() {
+            const plantId = $('#pendingPlantId').val();
+            const selectedEcosystem = $('input[name="ecosystemChoice"]:checked').val();
+
+            const payload = {
+                id: parseInt(plantId),
+                Ecosystem: selectedEcosystem
+            };
+
+            $.ajax({
+                url: '/Plants/AddToGarden',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(payload),
+                success: function (response) {
+                    if (response.success) {
+                        $('#ecosystemModal').modal('hide');
+                        // Show a nice success message or reload the garden grid
+                        alert("Added! " + (selectedEcosystem === "Aquatic" ? "Pond" : "Soil") + " tasks have been generated.");
+                        location.reload();
+                    } else {
+                        alert("Notice: " + response.message);
+                    }
+                },
+                error: function () {
+                    alert("Failed to add the plant to your garden.");
+                }
+            });
+        }
+
+        // --- REMOVE FROM GARDEN ---
+        function removeFromGarden(plantId) {
+            if (confirm("Remove this plant and all its associated care tasks from your garden?")) {
+                $.ajax({
+                    url: '/Plants/RemoveFromGarden',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ id: plantId }),
+                    success: function (response) {
+                        if (response.success) {
+                            // Smoothly fade out the plant card
+                            $('#my-plant-card-' + plantId).fadeOut(400, function() { $(this).remove(); });
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+}

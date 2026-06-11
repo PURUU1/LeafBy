@@ -1,0 +1,288 @@
+﻿@model IEnumerable<LeafBy.Models.DirectMessage>
+@inject LeafBy.Data.ApplicationDbContext _context
+@{
+    ViewData["Title"] = "Secure Chat";
+    var partnerUsername = ViewBag.PartnerUsername as string;
+    var currentUser = User.Identity.Name;
+    ViewBag.HideSidebar = true;
+}
+
+@section Styles {
+    <style>
+        /* Responsive Chat Wrapper */
+        .chat-app-wrapper {
+            /* REMOVED max-width and margin: 0 auto to eliminate the dead space! */
+            width: 100%;
+            height: calc(100vh - 100px); /* Stretches nicely to the bottom */
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(18, 55, 42, 0.08);
+            border: 1px solid rgba(173, 188, 159, 0.3);
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+        }
+
+        /* Message Bubble Width */
+        .msg-bubble-container {
+            max-width: 75%;
+        }
+
+
+    </style>
+}
+
+<div class="container-fluid chat-container-fluid py-0 py-md-3">
+    <div class="chat-app-wrapper">
+
+        <div class="p-3 border-bottom d-flex align-items-center justify-content-between" style="background-color: #12372A;">
+            <div>
+                <h5 class="fw-bold mb-0 text-white">Chat with @partnerUsername</h5>
+                <small style="color: rgba(255,255,255,0.8);"><i class="fas fa-circle text-success me-1" style="font-size: 8px;"></i> Live Connection</small>
+            </div>
+            <a asp-controller="Comunity" asp-action="Inbox" class="btn btn-sm btn-light rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
+                <i class="bi bi-x-lg text-dark"></i>
+            </a>
+        </div>
+
+        <div id="chat-messages" class="flex-grow-1 p-3 p-md-4 overflow-auto" style="background-color: #FBFADA;">
+            @if (Model != null)
+            {
+                @foreach (var msg in Model)
+                {
+                    bool isMe = msg.SenderUsername == currentUser;
+                    bool isTradeReq = msg.Message.StartsWith("|TRADE_REQ|");
+                    string alignment = isMe ? "justify-content-end" : "justify-content-start";
+
+                    <div class="d-flex @alignment mb-3 w-100">
+                        <div class="msg-bubble-container">
+                            <div class="small text-muted mb-1 px-1 fw-bold" style="font-size: 0.75rem;">@(isMe ? "You" : msg.SenderUsername)</div>
+
+                            @if (isTradeReq)
+                            {
+                                // Split the hidden payload: [0]="" [1]="TRADE_REQ" [2]=ReqId [3]=Title [4]=Image [5]=Message
+                                var parts = msg.Message.Split('|');
+                                if (parts.Length >= 6)
+                                {
+                                    int reqId = int.Parse(parts[2]);
+                                    var currentRequest = Model != null ? _context.ListingRequests.FirstOrDefault(r => r.Id == reqId) : null;
+                                    string currentStatus = currentRequest?.Status ?? "Pending";
+
+                                    string badgeClass = "bg-warning text-dark";
+                                    string borderStyle = "border-left: 5px solid #ffc107;";
+
+                                    if (currentStatus == "Accepted")
+                                    {
+                                        badgeClass = "bg-success text-white";
+                                        borderStyle = "border-left: 5px solid #198754;";
+                                    }
+                                    else if (currentStatus == "Rejected")
+                                    {
+                                        badgeClass = "bg-danger text-white";
+                                        borderStyle = "border-left: 5px solid #dc3545;";
+                                    }
+
+                                    <div class="card shadow-sm border-0 mb-2" style="border-radius: 1rem; overflow: hidden; background-color: #ffffff; @borderStyle">
+                                        <div class="d-flex align-items-center p-2 border-bottom bg-light">
+                                            <img src="@parts[4]" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;" class="me-3" alt="Listing Image">
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-0 fw-bold text-dark text-truncate" style="max-width: 150px;">Trade: @parts[3]</h6>
+                                                <small class="text-muted">Status: <span class="badge @badgeClass rounded-pill px-2">@currentStatus</span></small>
+                                            </div>
+                                        </div>
+                                        <div class="p-3">
+                                            <p class="mb-3 text-dark" style="font-size: 0.9rem;">"@parts[5]"</p>
+
+                                            @if (currentStatus == "Pending")
+                                            {
+                                                @if (!isMe)
+                                                {
+                                                    <div class="d-flex flex-wrap gap-2">
+                                                        <button class="btn btn-sm btn-success flex-grow-1 fw-bold rounded-pill" onclick="respondRequest(@parts[2], 'Accepted')">Accept</button>
+                                                        <button class="btn btn-sm btn-outline-danger flex-grow-1 fw-bold rounded-pill" onclick="respondRequest(@parts[2], 'Rejected')">Reject</button>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="text-center text-muted small fst-italic">Waiting for owner's response...</div>
+                                                }
+                                            }
+                                            else if (currentStatus == "Accepted")
+                                            {
+                                                <div class="alert alert-success py-2 mb-0 text-center small fw-bold rounded-pill">
+                                                    <i class="bi bi-check-circle-fill me-1"></i> Offer accepted!
+                                                </div>
+                                            }
+                                            else if (currentStatus == "Rejected")
+                                            {
+                                                <div class="alert alert-secondary py-2 mb-0 text-center small fst-italic rounded-pill">
+                                                    <i class="bi bi-x-circle-fill me-1"></i> Offer declined.
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                // Normal Text Bubble
+                                string bubbleColor = isMe ? "background-color: #12372A; color: white;" : "background-color: white; color: #12372A; border: 1px solid rgba(0,0,0,0.1);";
+                                string cornerRadius = isMe ? "border-radius: 1rem 1rem 0 1rem;" : "border-radius: 1rem 1rem 1rem 0;";
+
+                                <div class="p-3 shadow-sm" style="@bubbleColor @cornerRadius">
+                                    <p class="mb-0" style="line-height: 1.4;">@msg.Message</p>
+                                </div>
+                            }
+
+                            <div class="small text-muted mt-1 px-1 @(isMe ? "text-end" : "")" style="font-size: 0.7rem;">@msg.Timestamp.ToString("h:mm tt")</div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="bg-white p-3 border-top mt-auto">
+            <div class="input-group shadow-sm" style="border-radius: 2rem; overflow: hidden;">
+                <input type="text" id="message-input" class="form-control border-0 bg-light px-4" placeholder="Message @partnerUsername..." style="box-shadow: none;">
+                <button class="btn px-4 fw-bold" type="button" id="btn-send" style="background-color: #d84315; color: white;">
+                    <i class="bi bi-send-fill d-md-none"></i>
+                    <span class="d-none d-md-inline">Send</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const partnerUsername = '@partnerUsername';
+        const currentUser = '@currentUser';
+
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chatHub")
+            .withAutomaticReconnect()
+            .build();
+
+        const btnSend = document.getElementById("btn-send");
+        const msgInput = document.getElementById("message-input");
+        btnSend.disabled = true;
+
+        connection.on("ReceiveDirectMessage", function (sender, message, timestamp) {
+            if (sender === partnerUsername || sender === currentUser) {
+                const isMe = sender === currentUser;
+                const alignment = isMe ? "justify-content-end" : "justify-content-start";
+                let innerContent = "";
+
+                if (message.startsWith("|TRADE_REQ|")) {
+                    const parts = message.split('|');
+                    const reqId = parts[2];
+                    const title = parts[3];
+                    const imgUrl = parts[4];
+                    const userMsg = parts[5];
+
+                    let actionButtons = "";
+                    if (!isMe) {
+                        actionButtons = `
+                            <div class="d-flex flex-wrap gap-2">
+                                <button class="btn btn-sm btn-success flex-grow-1 fw-bold rounded-pill" onclick="respondRequest(${reqId}, 'Accepted')">Accept</button>
+                                <button class="btn btn-sm btn-outline-danger flex-grow-1 fw-bold rounded-pill" onclick="respondRequest(${reqId}, 'Rejected')">Reject</button>
+                            </div>`;
+                    } else {
+                        actionButtons = `<div class="text-center text-muted small fst-italic">Waiting for owner's response...</div>`;
+                    }
+
+                    innerContent = `
+                        <div class="card shadow-sm border-0 mb-2" style="border-radius: 1rem; overflow: hidden; background-color: #ffffff; border-left: 5px solid #ffc107;">
+                            <div class="d-flex align-items-center p-2 border-bottom bg-light">
+                                <img src="${imgUrl}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;" class="me-3">
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-0 fw-bold text-dark text-truncate" style="max-width: 150px;">Trade: ${title}</h6>
+                                    <small class="text-muted">Status: <span class="badge bg-warning text-dark rounded-pill px-2">Pending</span></small>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <p class="mb-3 text-dark" style="font-size: 0.9rem;">"${userMsg}"</p>
+                                ${actionButtons}
+                            </div>
+                        </div>`;
+                }
+                else {
+                    const bubbleColor = isMe ? "background-color: #12372A; color: white;" : "background-color: white; color: #12372A; border: 1px solid rgba(0,0,0,0.1);";
+                    const cornerRadius = isMe ? "border-radius: 1rem 1rem 0 1rem;" : "border-radius: 1rem 1rem 1rem 0;";
+                    innerContent = `<div class="p-3 shadow-sm" style="${bubbleColor} ${cornerRadius}"><p class="mb-0" style="line-height: 1.4;">${message}</p></div>`;
+                }
+
+                const msgHtml = `
+                    <div class="d-flex ${alignment} mb-3 w-100">
+                        <div class="msg-bubble-container">
+                            <div class="small text-muted mb-1 px-1 fw-bold" style="font-size: 0.75rem;">${isMe ? 'You' : sender}</div>
+                            ${innerContent}
+                            <div class="small text-muted mt-1 px-1 ${isMe ? 'text-end' : ''}" style="font-size: 0.7rem;">${timestamp}</div>
+                        </div>
+                    </div>`;
+
+                const chatArea = document.getElementById("chat-messages");
+                chatArea.insertAdjacentHTML('beforeend', msgHtml);
+                chatArea.scrollTop = chatArea.scrollHeight;
+            }
+        });
+
+        // Start connection
+        connection.start().then(() => {
+            btnSend.disabled = false;
+            const chatArea = document.getElementById("chat-messages");
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }).catch(err => {
+            console.error("Connection failed: ", err.toString());
+        });
+
+        // Send logic
+        function sendMessage() {
+            if (connection.state !== signalR.HubConnectionState.Connected) return;
+            const message = msgInput.value.trim();
+            if (message !== "") {
+                connection.invoke("SendDirectMessage", partnerUsername, message)
+                    .catch(err => console.error("Message send failed: ", err.toString()));
+                msgInput.value = "";
+            }
+        }
+
+        btnSend.addEventListener("click", sendMessage);
+        msgInput.addEventListener("keypress", e => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Handle Accept/Reject directly inside the chat
+        function respondRequest(id, newStatus) {
+            $.ajax({
+                url: '/Home/UpdateRequestStatus',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ RequestId: id, NewStatus: newStatus }),
+                success: function(res) {
+                    if(res.success) {
+                        let automatedReply = newStatus == 'Accepted'
+                            ? "✅ I have accepted your trade request! Let's work out the details."
+                            : "❌ I have declined this trade request.";
+
+                        if (connection.state === signalR.HubConnectionState.Connected) {
+                            connection.invoke("SendDirectMessage", partnerUsername, automatedReply)
+                                .catch(err => console.error("Message send failed: ", err.toString()));
+                        }
+
+                        setTimeout(() => { location.reload(); }, 500);
+                    } else {
+                        alert("Error: " + res.message);
+                    }
+                },
+                error: function() {
+                    alert("An error occurred while updating the request.");
+                }
+            });
+        }
+    </script>
+}

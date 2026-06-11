@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav d-flex align-items-center flex-row gap-2 gap-md-3">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item d-none d-md-block">
+            <div class="search-bar-container">
+                <i class="bi bi-search text-muted"></i>
+                <input type="text" placeholder="Search plants..." id="plantSearchBox">
+                <div id="searchResultsContainer"></div>
+            </div>
+        </li>
+
+        <li class="nav-item d-flex align-items-center gap-2 gap-md-3 header-icons">
+            <i class="bi bi-bell text-dark" style="cursor: pointer; font-size: 1.2rem;" title="Notifications"></i>
+
+            <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage Profile">
+                @{
+                    var firstchar = !string.IsNullOrEmpty(User.Identity?.Name) ? User.Identity.Name[0] : 'U';
+                }
+                <img src="https://placehold.co/100x100/2f4f4f/ffffff?text=@firstchar"
+                     alt="Profile"
+                     class="profile-pic shadow-sm border"
+                     style="width: 35px; height: 35px; border-radius: 50%;">
+            </a>
+
+            <form class="form-inline m-0 p-0" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="btn btn-link text-danger p-0 m-0 border-0" title="Logout">
+                    <i class="bi bi-box-arrow-right fs-4"></i>
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark px-2 px-md-3" asp-area="Identity" asp-page="/Account/Register">
+                <i class="bi bi-person-plus"></i> <span class="d-none d-md-inline">Register</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark px-2 px-md-3" asp-area="Identity" asp-page="/Account/Login">
+                <i class="bi bi-person-circle"></i> <span class="d-none d-md-inline">Login</span>
+            </a>
+        </li>
+    }
+</ul>

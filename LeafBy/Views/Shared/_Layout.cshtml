@@ -1,0 +1,804 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>@ViewData["Title"] - LeafBy</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/LeafBy.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="icon" type="image/svg+xml" href="~/images/logo-green.svg">
+    @await RenderSectionAsync("Header", required: false)
+    @await RenderSectionAsync("Styles", required: false)
+
+    <style>
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(18, 55, 42, 0.95); /* Matches your #12372A theme */
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .fab-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1040;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .sidebar-organic {
+            background-color: var(--card-bg);
+            border-right: 1px solid rgba(173, 188, 159, 0.3);
+        }
+    </style>
+</head>
+<body class="hide-scrollbar mb-0" style="background-color: var(--leaf-bg);">
+
+    <div class="d-flex vh-100 w-100 overflow-hidden position-relative">
+
+        @if (ViewBag.HideSidebar != true)
+        {
+            <nav class="sidebar-organic offcanvas-lg offcanvas-start d-flex flex-column flex-shrink-0 p-3" tabindex="-1" id="mobileSidebar" style="width: 280px; overflow-y: auto; background-color: #ffffff; border-right: 1px solid #e0e0e0;">
+                <div class="offcanvas-header d-lg-none pb-0">
+                    <h3 class="fw-bold mb-0" style="color: #12372A;">LeafBy</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#mobileSidebar"></button>
+                </div>
+
+                <div class="offcanvas-body d-flex flex-column h-100 mt-lg-3 mt-0">
+                    <div class="mb-4 d-none d-lg-block">
+                        <h2 class="fw-bold mb-0" style="color: #12372A;">Greenhouse<br>Alpha</h2>
+                    </div>
+
+                    @if (Model is LeafBy.ViewModels.HomeViewModel homeModel && homeModel.AppUser != null)
+                    {
+                        <div class="mb-4 text-muted small fw-bold text-uppercase" style="letter-spacing: 1px;">
+                            @User.Identity.Name
+                        </div>
+                    }
+
+                    <div class="nav mb-auto gap-2">
+                        <a href="@Url.Action("Index", "Home")" class="nav-link-custom @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" && ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")">
+                            <i class="bi bi-grid-fill me-2"></i> Dashboard
+                        </a>
+                        <a href="@Url.Action("Index", "Comunity")" class="nav-link-custom @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Comunity" && ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")">
+                            <i class="bi bi-people-fill me-2"></i> Community
+                        </a>
+                        <a href="@Url.Action("Calendar", "Home")" class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Calendar" ? "active" : "")">
+                            <i class="bi bi-calendar-event-fill me-2"></i> Calendar
+                        </a>
+                        <a href="@Url.Action("Inbox", "Comunity")" class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Inbox"  ? "active" : "")">
+                            <i class="bi bi-chat-dots-fill me-2"></i> Inbox
+                        </a>
+                      
+                    </div>
+                </div>
+            </nav>
+        }
+
+        <main class="flex-grow-1 overflow-y-auto d-flex flex-column" role="main">
+            <header class="p-3 px-lg-4 d-flex justify-content-between align-items-center bg-transparent">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn d-lg-none p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+                        <i class="bi bi-list fs-1" style="color: #12372A;"></i>
+                    </button>
+                        <img src="~/images/logo-green.svg" width="70px" />
+                    <div class="d-none d-sm-block ">
+                        <h3 class="mb-0 fw-bold" style="color: #12372A;">LeafBy Hub</h3>
+                        <div class="text-muted small">Hello, @User.Identity?.Name</div>
+                    </div>
+                </div>
+                <partial name="_LoginPartial" />
+            </header>
+
+            <div class="container-fluid p-3 p-lg-4 flex-grow-1">
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+       @if (ViewBag.HideSidebar != true)
+    {
+        <div style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; align-items: flex-end;">
+            <button type="button" class="btn shadow-lg rounded-pill d-flex align-items-center justify-content-center px-4" data-bs-toggle="modal" data-bs-target="#scannerModal" style="background-color: #d84315; color: white; height: 50px; font-weight: 600; border: none;">
+            <i class="bi bi-upc-scan me-2"></i> Scan
+        </button>
+
+        <button id="floatingBotBtn" class="btn rounded-circle shadow-lg d-flex align-items-center justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#botanistChatPanel" style="width: 65px; height: 65px; background-color: #12372A; color: white; border: none;">
+            <i class="bi bi-robot fs-3"></i>
+        </button>
+    </div>
+    }
+    <div class="collapse collapse-horizontal shadow-lg" id="botanistChatPanel" style="position: fixed; top: 0; right: 0; height: 100vh; z-index: 10000; background-color: #FBFADA;">
+        <div class="d-flex flex-column h-100" style="width: 100vw; max-width: 400px; border-left: 1px solid rgba(173, 188, 159, 0.3);">
+            <div class="p-3 d-flex justify-content-between align-items-center text-white shadow-sm" style="background-color: #12372A;">
+                <h5 class="mb-0 fw-bold"><i class="bi bi-robot me-2"></i> Leafy (AI Botanist)</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-toggle="collapse" data-bs-target="#botanistChatPanel"></button>
+            </div>
+
+            <div id="chatHistory" class="flex-grow-1 p-3 overflow-y-auto" style="background-color: #ffffff;">
+                <div class="mb-3 text-start">
+                    <div class="bg-light p-3 rounded-3 shadow-sm border d-inline-block" style="max-width: 90%; color: #12372A;">
+                        Hi! I'm Leafy, your AI Botanist. Ask me anything about plant care, pests, or garden planning!
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3 bg-white border-top mt-auto">
+                <div class="input-group shadow-sm" style="border-radius: 2rem; overflow: hidden;">
+                    <input type="text" id="chatInput" class="form-control border-0 bg-light px-4" placeholder="Ask about a plant..." style="box-shadow: none;">
+                    <button class="btn px-4" type="button" id="btnSendChat" style="background-color: #12372A; color: white;">
+                        <i class="bi bi-send-fill"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="scannerModal" tabindex="-1" aria-hidden="true" style="z-index: 10500;">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content shadow-lg" style="background-color: #FBFADA; border-radius: 1.5rem; border: none;">
+                <div class="modal-body p-4 p-md-5 text-center position-relative">
+                    <button type="button" class="btn-close position-absolute top-0 end-0 m-4" data-bs-dismiss="modal"></button>
+
+                    <h3 class="mb-2 fw-bold" style="color: #12372A;">Scanner</h3>
+                    <p class="text-muted mb-4 small">Choose a category for specialized AI diagnosis.</p>
+
+                   <form id="scannerForm">
+    <ul class="nav nav-pills nav-fill mb-3 gap-2" id="scanMethodTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active rounded-pill fw-bold" id="camera-tab" data-bs-toggle="tab" data-bs-target="#camera-pane" type="button" role="tab" style="background-color: #f4f8f5; color: #1a422b; border: 1px solid #e2ece7;">
+                <i class="bi bi-camera me-1"></i> Use Camera
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link rounded-pill fw-bold text-muted" id="upload-tab" data-bs-toggle="tab" data-bs-target="#upload-pane" type="button" role="tab" style="background-color: transparent;">
+                <i class="bi bi-folder2-open me-1"></i> Upload File
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content mb-4">
+        <div class="tab-pane fade show active" id="camera-pane" role="tabpanel">
+            <div class="position-relative bg-light rounded-4 overflow-hidden shadow-sm" style="height: 300px; border: 1px solid #ADBC9F; display: flex; align-items: center; justify-content: center;">
+                
+                <video id="cameraStream" autoplay playsinline class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" style="display: none;"></video>
+                
+                <img id="cameraPreview" class="w-100 h-100 object-fit-cover position-absolute top-0 start-0" style="display: none;" />
+                
+                <div id="cameraPlaceholder" class="text-center text-muted">
+                    <i class="bi bi-camera-video fs-1 mb-2"></i>
+                    <p class="small mb-0">Allow camera access to start</p>
+                    <button type="button" id="btnStartCamera" class="btn btn-sm btn-outline-success rounded-pill mt-2 fw-bold">Start Camera</button>
+                </div>
+
+                <div class="position-absolute bottom-0 w-100 p-3 d-flex justify-content-center gap-2" style="background: linear-gradient(transparent, rgba(0,0,0,0.6)); z-index: 10;">
+                    <button type="button" id="btnCapture" class="btn rounded-circle btn-light shadow-lg d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; display: none !important;">
+                        <div class="rounded-circle" style="width: 38px; height: 38px; border: 2px solid #1a422b;"></div>
+                    </button>
+                    <button type="button" id="btnRetake" class="btn btn-sm btn-light rounded-pill fw-bold shadow" style="display: none;">
+                        <i class="bi bi-arrow-counterclockwise"></i> Retake
+                    </button>
+                </div>
+            </div>
+            <input type="hidden" id="capturedImageData" name="capturedImageData" />
+        </div>
+
+        <div class="tab-pane fade" id="upload-pane" role="tabpanel">
+            <div class="mb-2 text-start">
+                <label for="scanImage" class="form-label fw-bold mb-2" style="color: #436850; font-size: 0.85rem;">
+                    Select an image from your device
+                </label>
+                <input class="form-control bg-white py-3" type="file" id="scanImage" name="scanImage" accept="image/*" style="border: 1px solid #ADBC9F; border-radius: 1rem;">
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column gap-3 mb-4 text-start">
+        <input type="radio" name="scanType" id="typePlant" value="Plant" class="btn-check" checked>
+        <label class="option-card border rounded p-3 d-flex align-items-center shadow-sm w-100" for="typePlant" style="cursor: pointer; background: white;">
+            <i class="bi bi-flower1 fs-3 me-3 text-success"></i>
+            <div>
+                <h6 class="mb-0 fw-bold" style="color: #12372A;">Plant ID</h6>
+                <small class="text-muted">Identify genus, species & care needs</small>
+            </div>
+        </label>
+
+        <input type="radio" name="scanType" id="typePest" value="Pest" class="btn-check">
+        <label class="option-card border rounded p-3 d-flex align-items-center shadow-sm w-100" for="typePest" style="cursor: pointer; background: white;">
+            <i class="bi bi-bug-fill fs-3 me-3 text-danger"></i>
+            <div>
+                <h6 class="mb-0 fw-bold" style="color: #12372A;">Pest ID</h6>
+                <small class="text-muted">Detect insects and get treatment plans</small>
+            </div>
+        </label>
+
+        <input type="radio" name="scanType" id="typeDisease" value="Disease" class="btn-check">
+        <label class="option-card border rounded p-3 d-flex align-items-center shadow-sm w-100" for="typeDisease" style="cursor: pointer; background: white;">
+            <i class="bi bi-virus fs-3 me-3" style="color: #6f42c1;"></i>
+            <div>
+                <h6 class="mb-0 fw-bold" style="color: #12372A;">Disease ID</h6>
+                <small class="text-muted">Diagnose spots, wilts & fungal issues</small>
+            </div>
+        </label>
+    </div>
+
+    <button type="submit" id="btnStartScan" class="btn w-100 rounded-pill py-3 fw-bold text-white shadow-sm" style="background-color: #d84315;">
+        Start Scan
+    </button>
+</form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3" style="z-index: 10600;">
+        <div id="messageToast" class="toast align-items-center text-bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <strong><i class="fas fa-envelope me-2"></i> New message from <span id="toastSender"></span></strong><br />
+                    <span id="toastMessage" class="small"></span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+            <a href="#" id="toastLink" class="stretched-link"></a>
+        </div>
+    </div>
+
+
+    <div id="loadingOverlay" class="d-none" style=" z-index:99">
+        <div class="spinner-border text-light mb-3" style="width: 4rem; height: 4rem; border-width: 0.3em;" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <h3 class="text-white fw-bold">Leafy is analyzing your scan...</h3>
+        <p class="text-light opacity-75">Identifying plant health and generating a care profile. Please wait.</p>
+    </div>
+
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="toast-container position-fixed top-0 end-0 p-4" style="z-index: 1055; margin-top: 60px;">
+            <div id="errorToast" class="toast align-items-center text-white bg-danger border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body fw-bold" style="font-size: 0.95rem;">
+                        <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+                        @TempData["Error"]
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-3 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var toastElement = document.getElementById('errorToast');
+                // 'delay: 6000' means it will stay on screen for 6 seconds before fading out
+                var toast = new bootstrap.Toast(toastElement, { delay: 6000 });
+                toast.show();
+            });
+        </script>
+    }
+    <div class="modal fade" id="addPlantModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px; background-color: #f7f9f7;">
+
+                <div class="modal-header border-0 pb-0 mt-2">
+                    <h5 class="modal-title" style="color: #0c3b2e; font-weight: 800; font-size: 1.4rem;">Add to Garden</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body pt-2">
+                    <p class="text-muted mb-4" style="font-size: 0.9rem;">Review the AI data and assign a location to track this plant.</p>
+
+                    <form id="formAddPlant" action="/Plants/AddUserPlant" method="post" enctype="multipart/form-data">
+
+                        <input type="hidden" id="hiddenBase64" name="Base64Image" value="" />
+                        <input type="hidden" id="hiddenRawAiJson" name="RawAiJson" value="" />
+
+                        <div class="mb-4 text-center">
+                            <div class="rounded-circle bg-white d-flex align-items-center justify-content-center mx-auto mb-2 shadow-sm" id="imagePreview" style="width: 110px; height: 110px; border: 3px solid #e9ecef; overflow: hidden;">
+                                <i class="fas fa-camera fs-3" style="color: #adb5bd;" id="cameraIcon"></i>
+                                <img id="previewImg" src="" style="width: 100%; height: 100%; object-fit: cover; display: none;" />
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold" style="font-size: 0.75rem; color: #5a6d63; letter-spacing: 0.5px;">PLANT SPECIES *</label>
+                            <input type="text" class="form-control shadow-sm border-0 py-2" name="CommonName" required>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-12 col-md-6 mb-3 mb-md-0">
+                                <label class="form-label fw-bold" style="font-size: 0.75rem; color: #5a6d63; letter-spacing: 0.5px;">NICKNAME</label>
+                                <input type="text" class="form-control shadow-sm border-0 py-2" name="Nickname">
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label fw-bold" style="font-size: 0.75rem; color: #5a6d63; letter-spacing: 0.5px;">LOCATION</label>
+                                <select class="form-select shadow-sm border-0 py-2" name="Location">
+                                    <option value="Terrace Garden">Terrace Garden</option>
+                                    <option value="Indoor Window">Indoor Window</option>
+                                    <option value="Outdoor Pond">Outdoor Pond</option>
+                                    <option value="Balcony">Balcony</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer border-0 px-0 pb-2">
+                            <button type="button" class="btn btn-link text-muted text-decoration-none fw-bold" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn px-4 py-2 fw-bold shadow-sm" style="background-color: #12372A; color: white; border-radius: 10px; width: 60%;">
+                                <i class="fas fa-save me-2"></i> Save Plant
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            // ==========================================
+            // 1. LEAFY CHATBOT LOGIC
+            // ==========================================
+            function scrollToBottom() {
+                var chatHistory = $('#chatHistory');
+                if (chatHistory.length) {
+                    chatHistory.scrollTop(chatHistory[0].scrollHeight);
+                }
+            }
+
+            // A. Load Chat History
+            $.ajax({
+                url: '/ChatBot/ChatHistory',
+                type: 'POST',
+                contentType: 'application/json',
+                        success: function(response) {
+            if (!response.history || response.history.trim() === "") return;
+
+            const chatHistory = JSON.parse(response.history);
+            const $container = $('#chatHistory');
+
+            chatHistory.forEach(msg => {
+                const role = msg.role; // "system", "user", or "assistant"
+
+                // 1. Skip the hidden system prompt so it doesn't show in the UI!
+                if (role === 'system') return;
+
+                // 2. USE THE NEW NVIDIA SCHEMA (.content instead of .parts[0].text)
+                const text = msg.content;
+
+                let messageHtml = '';
+
+                if (role === 'user') {
+                    messageHtml = `
+                        <div class="mb-3 text-end">
+                            <div class="bg-success text-white p-3 rounded-4 shadow-sm d-inline-block text-start" style="max-width: 80%;">
+                                ${text}
+                            </div>
+                        </div>`;
+                } else {
+                    messageHtml = `
+                        <div class="mb-3">
+                            <div class="bg-white p-3 rounded-4 shadow-sm d-inline-block border text-dark text-start" style="max-width: 80%;">
+                                ${text}
+                            </div>
+                        </div>`;
+                }
+                $container.append(messageHtml);
+            });
+            scrollToBottom();
+        },
+                error: function() {
+                    console.error("Could not load chat history.");
+                }
+            });
+
+            // B. Send New Message
+            function sendMessage() {
+                let msg = $('#chatInput').val().trim();
+                if (!msg) return;
+
+                // User Bubble
+                $('#chatHistory').append(`
+                    <div class="mb-3 text-end">
+                        <div class="bg-success text-white p-3 rounded-4 shadow-sm d-inline-block" style="max-width: 80%;">
+                            ${msg}
+                        </div>
+                    </div>
+                `);
+
+                $('#chatInput').val('');
+                scrollToBottom();
+
+                // Typing Indicator
+                let typingId = 'typing-' + Date.now();
+                $('#chatHistory').append(`
+                    <div class="mb-3" id="${typingId}">
+                        <div class="bg-white p-3 rounded-4 shadow-sm d-inline-block border text-muted">
+                            <em>Leafy is thinking...</em>
+                        </div>
+                    </div>
+                `);
+                scrollToBottom();
+
+                // Send to C#
+                $.ajax({
+                    url: '/ChatBot/AskBotanist',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ prompt: msg }),
+                    success: function(response) {
+                        $('#' + typingId).remove();
+                        $('#chatHistory').append(`
+                            <div class="mb-3">
+                                <div class="bg-white p-3 rounded-4 shadow-sm d-inline-block border text-dark" style="max-width: 80%;">
+                                    ${response.answer}
+                                </div>
+                            </div>
+                        `);
+                        scrollToBottom();
+                    },
+                    error: function() {
+                        $('#' + typingId).remove();
+                        $('#chatHistory').append(`<div class="text-danger small mb-3">Error connecting to AI.</div>`);
+                        scrollToBottom();
+                    }
+                });
+            }
+
+            $('#btnSendChat').click(sendMessage);
+            $('#chatInput').keypress(function(e) { if(e.which == 13) sendMessage(); });
+
+            // C. Hide bot button when chat opens
+            const chatPanel = document.getElementById('botanistChatPanel');
+            const botBtn = document.getElementById('floatingBotBtn');
+            if (chatPanel && botBtn) {
+                chatPanel.addEventListener('show.bs.collapse', function () {
+                    botBtn.style.transition = 'opacity 0.2s';
+                    botBtn.style.opacity = '0';
+                    setTimeout(() => botBtn.style.display = 'none', 200);
+                });
+                chatPanel.addEventListener('hidden.bs.collapse', function () {
+                    botBtn.style.display = 'flex';
+                    setTimeout(() => botBtn.style.opacity = '1', 10);
+                });
+            }
+
+            // ==========================================
+            // 2. SCANNER LOGIC
+            // ==========================================
+            $('input[name="scanType"]').change(function() {
+                let selectedCategory = $(this).val();
+                $('#btnStartScan').text(`Start ${selectedCategory} Scan`);
+            });
+
+            $('#scannerForm').submit(function(e) {
+                e.preventDefault();
+                let category = $('input[name="scanType"]:checked').val();
+                let fileInput = $('#scanImage')[0];
+                let file = fileInput.files[0];
+
+                if (!file) {
+                    alert("Please capture or select an image first.");
+                    return;
+                }
+
+                var formData = new FormData();
+                formData.append("scanImage", file);
+                formData.append("category", category);
+
+                let $btn = $('#btnStartScan');
+                let originalText = $btn.text();
+                $btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-2"></span> Analyzing...');
+
+                $.ajax({
+                    url: '/PlantScanner/UploadToSession', // Ensure this matches your [HttpPost] controller route
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        if (res.success) {
+                            window.location.href = res.redirectUrl;
+                        } else {
+                            alert(res.message);
+                        }
+                    },
+                    error: function () {
+                        alert("Error uploading scan.");
+                    },
+                    complete: function () {
+                        $btn.prop('disabled', false).text(originalText);
+                    }
+                });
+            });
+
+            // ==========================================
+            // 3. SEARCH LOGIC
+            // ==========================================
+            $('#plantSearchBox').on('keyup', function () {
+                let searchQuery = $(this).val();
+                if (searchQuery.length >= 2) {
+                    $.ajax({
+                        url: '/Plants/SearchLocalPlants',
+                        type: 'GET',
+                        data: { query: searchQuery },
+                        success: function (results) {
+                            $('#searchResultsContainer').empty();
+                            if (results.length === 0) {
+                                $('#searchResultsContainer').append('<p class="text-muted">No plants found.</p>');
+                                return;
+                            }
+                            results.forEach(plant => {
+                                $('#searchResultsContainer').append(`
+                                            
+        <div class="d-flex align-items-center gap-3 p-2 border-bottom" style="cursor: pointer;" onclick="window.location.href = \`/plants/details/${plant.id}\`;">
+                                        <img src="${plant.image}" alt="${plant.title}" style="width: 80px;height: 80px;object-fit: cover;border-radius: 8px;">
+                                        <div>
+                                             
+                                            <h6 class="mb-0 fw-bold">${plant.title}</h6>
+                                        
+                                            <small class="text-muted">${plant.subtitle} • ${plant.water} Water</small>
+                                        </div>
+                                        
+                                    </div>
+                                `);
+                            });
+                        }
+                    });
+                } else {
+                    $('#searchResultsContainer').empty();
+                }
+            });
+
+        }); // End of Document Ready
+
+        // Add this inside your $(document).ready(function() { ... });
+$(document).on('click', function(e) {
+    // If the user clicks anywhere NOT inside the search box, hide results
+    if (!$(e.target).closest('.search-bar-container').length) {
+        $('#searchResultsContainer').empty();
+    }
+});
+    </script>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <script>
+            const globalConnection = new signalR.HubConnectionBuilder()
+                .withUrl("/chatHub")
+                .withAutomaticReconnect()
+                .build();
+
+            globalConnection.on("ReceiveDirectMessage", function (sender, message, timestamp) {
+                const currentPath = window.location.pathname.toLowerCase();
+                const urlParams = new URLSearchParams(window.location.search);
+                const partnerInUrl = urlParams.get('partnerUsername');
+
+                const isActivelyChatting = currentPath.includes('/comunity/directchat') && partnerInUrl === sender;
+                const isMyOwnMessage = sender === '@User.Identity.Name';
+
+                if (!isActivelyChatting && !isMyOwnMessage) {
+                    document.getElementById('toastSender').innerText = sender;
+                    let snippet = message.length > 40 ? message.substring(0, 40) + '...' : message;
+                    document.getElementById('toastMessage').innerText = snippet;
+                    document.getElementById('toastLink').href = `/Community/DirectChat?partnerUsername=${sender}`;
+
+                    const toastElement = document.getElementById('messageToast');
+                    const toast = new bootstrap.Toast(toastElement, { delay: 5000 });
+                    toast.show();
+                }
+            });
+
+            globalConnection.start().catch(function (err) {
+                console.error("Global Notification Hub Error: ", err.toString());
+            });
+
+        </script>
+    }
+    
+        <script>
+            $(document).ready(function () {
+                // Replace 'scannerForm' with the actual ID of your form
+                $('#scannerForm').on('submit', function () {
+                    // Show the overlay
+                    $('#loadingOverlay').removeClass('d-none').addClass('d-flex');
+
+                    // Disable the submit button to prevent double-clicks
+                    $(this).find('button[type="submit"]').prop('disabled', true);
+                });
+            });
+        </script>
+    <script>
+        // Handles the manual file upload preview in the modal
+        function previewFile(input) {
+            var file = document.getElementById("plantImage").files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // Show the image, hide the camera icon
+                    document.getElementById("previewImg").src = e.target.result;
+                    document.getElementById("previewImg").style.display = "block";
+                    document.getElementById("cameraIcon").style.display = "none";
+                    document.getElementById("imagePreview").style.border = "none";
+
+                    // Clear out the hidden Base64 field if they manually selected a new photo
+                    document.getElementById("hiddenBase64").value = "";
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const video = document.getElementById('cameraStream');
+        const preview = document.getElementById('cameraPreview');
+        const placeholder = document.getElementById('cameraPlaceholder');
+        const btnStartCamera = document.getElementById('btnStartCamera');
+        const btnCapture = document.getElementById('btnCapture');
+        const btnRetake = document.getElementById('btnRetake');
+        const hiddenInput = document.getElementById('capturedImageData');
+        const scannerForm = document.getElementById('scannerForm');
+        let stream = null;
+
+        // 1. START CAMERA FUNCTION
+        async function startCamera() {
+            try {
+                // Request the rear-facing camera
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: 'environment' }, 
+                    audio: false 
+                });
+                
+                video.srcObject = stream;
+                video.style.display = 'block';
+                placeholder.style.display = 'none';
+                preview.style.display = 'none';
+                
+                // Show capture button
+                btnCapture.style.setProperty('display', 'flex', 'important');
+                btnRetake.style.display = 'none';
+                hiddenInput.value = ''; // clear previous capture
+            } catch (err) {
+                console.error("Camera access denied or unavailable: ", err);
+                alert("Could not access the camera. Please ensure you have granted permissions.");
+            }
+        }
+
+        // 2. STOP CAMERA FUNCTION (To save battery when not in use)
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                video.srcObject = null;
+            }
+        }
+
+        // EVENT: User clicks 'Start Camera'
+        btnStartCamera.addEventListener('click', startCamera);
+
+        // EVENT: User clicks the round Capture button
+        btnCapture.addEventListener('click', function () {
+            // Draw the current video frame to a temporary canvas
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+
+            // Get the image data as a Base64 string
+            const imageDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+            
+            // Set it to preview and save it to the hidden input
+            preview.src = imageDataUrl;
+            hiddenInput.value = imageDataUrl;
+
+            // UI Swaps
+            video.style.display = 'none';
+            preview.style.display = 'block';
+            btnCapture.style.setProperty('display', 'none', 'important');
+            btnRetake.style.display = 'block';
+
+            stopCamera(); // Turn off the actual webcam light
+        });
+
+        // EVENT: User clicks 'Retake'
+        btnRetake.addEventListener('click', startCamera);
+
+        // Turn off camera if they switch to the Upload tab
+        document.getElementById('upload-tab').addEventListener('shown.bs.tab', stopCamera);
+        
+        // Turn on camera if they switch back to the Camera tab
+        document.getElementById('camera-tab').addEventListener('shown.bs.tab', function() {
+            if (hiddenInput.value === '') {
+                startCamera();
+            }
+        });
+
+        // 3. FORM SUBMISSION INTERCEPTION
+        scannerForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Stop normal form submission
+
+            let formData = new FormData();
+            
+            // Grab the selected category
+            const category = document.querySelector('input[name="scanType"]:checked').value;
+            formData.append('category', category);
+
+            // Determine if we are sending the Captured Photo OR the Uploaded File
+            const activeTabId = document.querySelector('#scanMethodTabs .active').id;
+            
+            if (activeTabId === 'camera-tab' && hiddenInput.value) {
+                // Convert the Base64 string into a physical File object
+                const file = dataURLtoFile(hiddenInput.value, `scan_${Date.now()}.jpg`);
+                formData.append('scanImage', file);
+            } else {
+                // Grab the file from the traditional file input
+                const fileInput = document.getElementById('scanImage');
+                if (fileInput.files.length > 0) {
+                    formData.append('scanImage', fileInput.files[0]);
+                } else {
+                    alert("Please capture a photo or upload an image.");
+                    return;
+                }
+            }
+
+            // Change button to show loading state
+            const btnSubmit = document.getElementById('btnStartScan');
+            btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Processing...';
+            btnSubmit.disabled = true;
+
+            // Send the exact data payload your C# Controller is expecting via AJAX
+            fetch('@Url.Action("UploadToSession", "PlantScanner")', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.redirectUrl; // Follow your C# redirect
+                } else {
+                    alert(data.message);
+                    btnSubmit.innerHTML = 'Start Scan';
+                    btnSubmit.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                btnSubmit.innerHTML = 'Start Scan';
+                btnSubmit.disabled = false;
+            });
+        });
+
+        // HELPER FUNCTION: Converts Base64 back into an IFormFile compatible object
+        function dataURLtoFile(dataurl, filename) {
+            let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+            while(n--){
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new File([u8arr], filename, {type:mime});
+        }
+    });
+</script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,842 @@
+[
+  {
+    "Id": 1,
+    "Nickname": "Silver Fir",
+    "CommonName": "European Silver Fir",
+    "ScientificName": "Abies alba",
+    "Location": "Garden",
+    "HealthStatus": "Healthy",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Partial Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1_abies_alba/og/1536px-Abies_alba_SkalitC3A9.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=0ff6e485a2be260944e6bf1e44d046df608e94ece8f2d9af9f428b78dc584bd3",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1_abies_alba/regular/1536px-Abies_alba_SkalitC3A9.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=97b1d8ee76c4c6369ae5948a9acc0f99bfb7858c8d070b810e0eed4b0eda754a",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1_abies_alba/regular/1536px-Abies_alba_SkalitC3A9.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=97b1d8ee76c4c6369ae5948a9acc0f99bfb7858c8d070b810e0eed4b0eda754a",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1_abies_alba/medium/1536px-Abies_alba_SkalitC3A9.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=eec20d24fce7db7f24890d59847f43a03cfea46bfed39ed269b8bae652bfa4d1",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1_abies_alba/small/1536px-Abies_alba_SkalitC3A9.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=9389f7568ced75d7becd6ebe6c37037933119831acf64f7343313973be7c692a",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/1_abies_alba/thumbnail/1536px-Abies_alba_SkalitC3A9.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=ca7a9576ffda8f32e6c980a20c1afcc4f1f78816f36f433b6c0b4ce9382cbace",
+    "SoilMix": {
+      "Id": 1,
+      "PlantCatalogId": 1,
+      "RecipeName": "Conifer Blend",
+      "Ingredients": "40% Loam, 30% Perlite, 30% Composted Bark",
+      "Component1": "Loam",
+      "Percentage1": 40,
+      "Component2": "Perlite",
+      "Percentage2": 30,
+      "Component3": "Composted Bark",
+      "Percentage3": 30,
+      "Description": "Well-draining acidic mix ideal for silver firs. Mimics native mountain forest soil."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 1,
+        "PlantCatalogId": 1,
+        "Type": "Organic",
+        "Title": "Neem Oil Spray for Aphids",
+        "Description": "Controls common aphid infestations on fir needles without harming beneficial insects.",
+        "Instructions": "Mix 2 tsp neem oil with 1 tsp dish soap in 1 litre of warm water. Spray on affected branches every 7 days until clear."
+      },
+      {
+        "Id": 2,
+        "PlantCatalogId": 1,
+        "Type": "Fertilizer",
+        "Title": "Acidic Compost Tea",
+        "Description": "Boosts soil acidity and nutrient availability for conifers.",
+        "Instructions": "Steep 2 cups of pine bark compost in 4 litres of water for 24 hours. Water around the base every 2 weeks in spring."
+      }
+    ],
+    "CareProfile": {
+      "Id": 1,
+      "PlantCatalogId": 1,
+      "SunlightDetails": "Prefers dappled shade to partial sun; avoid harsh afternoon exposure",
+      "WaterDetails": "Keep soil consistently moist; water deeply once a week in dry spells",
+      "PruningRequirement": "Minimal",
+      "PruningDetails": "Remove dead or damaged branches in late winter before new growth",
+      "ThermalSensitivity": "Hardy to -20°C; protect young trees from late spring frosts"
+    }
+  },
+  {
+    "Id": 2,
+    "Nickname": "Pyramid Fir",
+    "CommonName": "Pyramidalis Silver Fir",
+    "ScientificName": "Abies alba 'Pyramidalis'",
+    "Location": "Garden",
+    "HealthStatus": "Thriving",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Full Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/2_abies_alba_pyramidalis/og/49255769768_df55596553_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=ef68b0bcb994cd40ec8151afe7746963e442bc6bd138cd6e9c4c08251709ce90",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/2_abies_alba_pyramidalis/regular/49255769768_df55596553_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=1913a77ad668cb7fae4a2a931b683cbd01865ea26d0e6e94dc9f390db17206e5",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/2_abies_alba_pyramidalis/regular/49255769768_df55596553_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=1913a77ad668cb7fae4a2a931b683cbd01865ea26d0e6e94dc9f390db17206e5",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/2_abies_alba_pyramidalis/medium/49255769768_df55596553_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=6f05b0a7c63a4c79675cda467cff00b087171955d140f6190712a381895a3c81",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/2_abies_alba_pyramidalis/small/49255769768_df55596553_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=68b7124870e494fc204067aef62b57524e110976ad2e50b5945b141b6c7b9b81",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/2_abies_alba_pyramidalis/thumbnail/49255769768_df55596553_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=fe7bb59700c977c00ae5266f412dd351f572ae526c377bcff32a208b3a2a3451",
+    "SoilMix": {
+      "Id": 2,
+      "PlantCatalogId": 2,
+      "RecipeName": "Pyramid Fir Mix",
+      "Ingredients": "50% Loam, 25% Grit, 25% Leaf Mould",
+      "Component1": "Loam",
+      "Percentage1": 50,
+      "Component2": "Grit",
+      "Percentage2": 25,
+      "Component3": "Leaf Mould",
+      "Percentage3": 25,
+      "Description": "Slightly acidic, free-draining mix suited for columnar conifers in garden beds."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 3,
+        "PlantCatalogId": 2,
+        "Type": "Organic",
+        "Title": "Garlic Spray for Mites",
+        "Description": "Repels spider mites that commonly infest compact fir cultivars.",
+        "Instructions": "Blend 4 garlic cloves in 500ml water, strain, dilute to 1 litre. Spray undersides of branches weekly."
+      }
+    ],
+    "CareProfile": {
+      "Id": 2,
+      "PlantCatalogId": 2,
+      "SunlightDetails": "Thrives in full sun to partial shade; columnar form suits open positions",
+      "WaterDetails": "Water regularly when young; established trees tolerate brief dry periods",
+      "PruningRequirement": "Minimal",
+      "PruningDetails": "Only remove crossing or damaged branches; avoid cutting into old wood",
+      "ThermalSensitivity": "Frost-hardy to -25°C; very tolerant of cold mountain climates"
+    }
+  },
+  {
+    "Id": 4,
+    "Nickname": "Candicans Fir",
+    "CommonName": "Candicans White Fir",
+    "ScientificName": "Abies concolor 'Candicans'",
+    "Location": "Patio",
+    "HealthStatus": "Healthy",
+    "WaterRequirement": "Low",
+    "SunRequirement": "Full Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/4_abies_concolor_candicans/og/49283844888_332c9e46f2_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=fced14f83f96c58d2a0e272fe0c0e2c42588cb9598447f6b83a7dd6d330ba4af",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/4_abies_concolor_candicans/regular/49283844888_332c9e46f2_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=64934e5b3022fa222da40e5c4e64c5feeaac1b1adff6886cdec9a9adbb446dab",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/4_abies_concolor_candicans/regular/49283844888_332c9e46f2_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=64934e5b3022fa222da40e5c4e64c5feeaac1b1adff6886cdec9a9adbb446dab",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/4_abies_concolor_candicans/medium/49283844888_332c9e46f2_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=f6bfb9fc64006885f3be567232935c0e314da06c38c83bdebb7aa6d74b11d6a5",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/4_abies_concolor_candicans/small/49283844888_332c9e46f2_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=0f5bec72f69325386f0e3947129e41be7854d388e93d86e9fafc0d2df88e4d40",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/4_abies_concolor_candicans/thumbnail/49283844888_332c9e46f2_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=b893f03ab6d05cfa6ad4ad981953a14d3a3044760642daf7fc9a033a4d80d2dd",
+    "SoilMix": {
+      "Id": 3,
+      "PlantCatalogId": 4,
+      "RecipeName": "Silver-Blue Fir Mix",
+      "Ingredients": "45% Sandy Loam, 35% Perlite, 20% Compost",
+      "Component1": "Sandy Loam",
+      "Percentage1": 45,
+      "Component2": "Perlite",
+      "Percentage2": 35,
+      "Component3": "Compost",
+      "Percentage3": 20,
+      "Description": "Drought-tolerant mix for blue-needled conifers. Excellent drainage prevents root rot."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 4,
+        "PlantCatalogId": 4,
+        "Type": "Organic",
+        "Title": "Cinnamon Bark Dust",
+        "Description": "Prevents fungal issues at the root zone in warm, humid conditions.",
+        "Instructions": "Dust ground cinnamon lightly around the base of the trunk after watering. Reapply every 10 days."
+      }
+    ],
+    "CareProfile": {
+      "Id": 3,
+      "PlantCatalogId": 4,
+      "SunlightDetails": "Full sun preferred; the blue-silver foliage intensifies with more light",
+      "WaterDetails": "Drought-tolerant once established; water sparingly, allow topsoil to dry between waterings",
+      "PruningRequirement": "Rare",
+      "PruningDetails": "Prune only to remove dead wood; natural pyramidal form needs no shaping",
+      "ThermalSensitivity": "Hardy to -30°C; one of the most cold-tolerant fir cultivars"
+    }
+  },
+  {
+    "Id": 5,
+    "Nickname": "Fraser",
+    "CommonName": "Fraser Fir",
+    "ScientificName": "Abies fraseri",
+    "Location": "Garden",
+    "HealthStatus": "Thriving",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Partial Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/5_abies_fraseri/og/36843539702_e80fc436e0_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=0facb52df5fd72decd5798ef49e02432855df2036fc5e28313aa4c65f089de2b",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/5_abies_fraseri/regular/36843539702_e80fc436e0_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=744d760632cb058f361b694fa57a34bc7d891afed1171d8e4843296bcfedb4db",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/5_abies_fraseri/regular/36843539702_e80fc436e0_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=744d760632cb058f361b694fa57a34bc7d891afed1171d8e4843296bcfedb4db",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/5_abies_fraseri/medium/36843539702_e80fc436e0_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=3e21d08e6d6422cadade5c1747646b442b18ae9a433ea2c9e7b5f9fe01f75fab",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/5_abies_fraseri/small/36843539702_e80fc436e0_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=c5434fca07d9a6de26a653591bb4d786829f683b4b066ab9625c290009e06e33",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/5_abies_fraseri/thumbnail/36843539702_e80fc436e0_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=2535f2242897a1f74add3765f91090cd3b6e1f98e4090b164fa1c8a53aa21c78",
+    "SoilMix": {
+      "Id": 4,
+      "PlantCatalogId": 5,
+      "RecipeName": "Appalachian Fir Blend",
+      "Ingredients": "40% Loam, 30% Peat, 30% Perlite",
+      "Component1": "Loam",
+      "Percentage1": 40,
+      "Component2": "Peat",
+      "Percentage2": 30,
+      "Component3": "Perlite",
+      "Percentage3": 30,
+      "Description": "Moist yet airy soil for Fraser Fir, mimicking cool Appalachian highland conditions."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 5,
+        "PlantCatalogId": 5,
+        "Type": "Organic",
+        "Title": "Epsom Salt Boost",
+        "Description": "Corrects magnesium deficiency causing yellowing needles.",
+        "Instructions": "Dissolve 1 tbsp Epsom salt in 4 litres of water. Apply to soil around tree base once a month in growing season."
+      }
+    ],
+    "CareProfile": {
+      "Id": 4,
+      "PlantCatalogId": 5,
+      "SunlightDetails": "Partial sun to full sun; appreciates some afternoon shade in hot climates",
+      "WaterDetails": "Consistent moisture preferred; mulch well to retain soil humidity",
+      "PruningRequirement": "Spring",
+      "PruningDetails": "Light tip pruning in early spring encourages dense branching",
+      "ThermalSensitivity": "Hardy to -25°C; native to cool Appalachian highlands above 1500m"
+    }
+  },
+  {
+    "Id": 6,
+    "Nickname": "Golden Korean",
+    "CommonName": "Golden Korean Fir",
+    "ScientificName": "Abies koreana 'Aurea'",
+    "Location": "Terrace Garden",
+    "HealthStatus": "Healthy",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Partial Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/6_abies_koreana_aurea/og/49235570926_99ec10781d_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=9182f07a67c403fc748e9c9e530df7c6806e1a6815e16433e08ff781c44cd030",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/6_abies_koreana_aurea/regular/49235570926_99ec10781d_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=948af7d7c0c8f8f7962e276bd6f6e47eeda0037c92c5ac6976557b138a9697cd",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/6_abies_koreana_aurea/regular/49235570926_99ec10781d_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=948af7d7c0c8f8f7962e276bd6f6e47eeda0037c92c5ac6976557b138a9697cd",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/6_abies_koreana_aurea/medium/49235570926_99ec10781d_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=d339334ec54a9d31d3cb53a54095ab6bc10827d9824e70012d8822e6139abea9",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/6_abies_koreana_aurea/small/49235570926_99ec10781d_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=1e54679dccdf64af97851712c257525639391334fdcc6d1a25082e1591f5854a",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/6_abies_koreana_aurea/thumbnail/49235570926_99ec10781d_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=379574fc966f6b39fc9c674e99e3dbb906ad63a067589633f01302fb8e670ccc",
+    "SoilMix": {
+      "Id": 5,
+      "PlantCatalogId": 6,
+      "RecipeName": "Korean Fir Mix",
+      "Ingredients": "50% Compost, 30% Sand, 20% Bark Chips",
+      "Component1": "Compost",
+      "Percentage1": 50,
+      "Component2": "Sand",
+      "Percentage2": 30,
+      "Component3": "Bark Chips",
+      "Percentage3": 20,
+      "Description": "Rich organic mix that supports the slow-growing golden foliage of this ornamental fir."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 6,
+        "PlantCatalogId": 6,
+        "Type": "Fertilizer",
+        "Title": "Banana Peel Potassium Feed",
+        "Description": "Encourages vibrant golden needle color with natural potassium.",
+        "Instructions": "Bury 2 dried banana peels 5cm deep around the drip line. Refresh monthly during spring and summer."
+      }
+    ],
+    "CareProfile": {
+      "Id": 5,
+      "PlantCatalogId": 6,
+      "SunlightDetails": "Partial sun; morning sun with afternoon shade keeps golden foliage from scorching",
+      "WaterDetails": "Regular watering needed; soil should stay moist but never waterlogged",
+      "PruningRequirement": "Spring",
+      "PruningDetails": "Lightly prune after new growth emerges to maintain compact shape",
+      "ThermalSensitivity": "Hardy to -20°C; mulch roots in first few winters after planting"
+    }
+  },
+  {
+    "Id": 8,
+    "Nickname": "Blue Spanish",
+    "CommonName": "Blue Spanish Fir",
+    "ScientificName": "Abies pinsapo 'Glauca'",
+    "Location": "Garden",
+    "HealthStatus": "Healthy",
+    "WaterRequirement": "Low",
+    "SunRequirement": "Full Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/8_abies_pinsapo_glauca/og/21657514018_c0d9fed9f4_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=fad7f5dcc588439c90bedfc56aac1c088804fd3c3ca0c70964a7d39b2f102f88",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/8_abies_pinsapo_glauca/regular/21657514018_c0d9fed9f4_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=944b7ecd9b67f7c4c09666b5a74ba0b5183e8d02204eae2c0194a3ca6165c356",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/8_abies_pinsapo_glauca/regular/21657514018_c0d9fed9f4_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=944b7ecd9b67f7c4c09666b5a74ba0b5183e8d02204eae2c0194a3ca6165c356",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/8_abies_pinsapo_glauca/medium/21657514018_c0d9fed9f4_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=5b2eaedd8d7ad6ce83d7ee20f089849c976df43021289d6523852aad94543387",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/8_abies_pinsapo_glauca/small/21657514018_c0d9fed9f4_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=8b0c0e24ef44a06637b51db2835e3b84f9ff364833ff0da332bdb8106fc2d258",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/8_abies_pinsapo_glauca/thumbnail/21657514018_c0d9fed9f4_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=e2df015d7dc11e547331ecdd3d0867721fd5430d40bc7348ff645b3965bf4b4a",
+    "SoilMix": {
+      "Id": 6,
+      "PlantCatalogId": 8,
+      "RecipeName": "Mediterranean Fir Blend",
+      "Ingredients": "50% Gritty Loam, 30% Coarse Sand, 20% Gravel",
+      "Component1": "Gritty Loam",
+      "Percentage1": 50,
+      "Component2": "Coarse Sand",
+      "Percentage2": 30,
+      "Component3": "Gravel",
+      "Percentage3": 20,
+      "Description": "Fast-draining alkaline mix for this drought-hardy Spanish fir. Mimics rocky limestone hillsides."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 7,
+        "PlantCatalogId": 8,
+        "Type": "Organic",
+        "Title": "Wood Ash Soil Sweetener",
+        "Description": "Raises soil pH slightly and adds potassium for this alkaline-preferring species.",
+        "Instructions": "Sprinkle 1/4 cup of wood ash around base, rake lightly into soil. Use once per season."
+      }
+    ],
+    "CareProfile": {
+      "Id": 6,
+      "PlantCatalogId": 8,
+      "SunlightDetails": "Full sun essential; needs 6+ hours daily to maintain its dense blue-grey foliage",
+      "WaterDetails": "Low water needs once established; highly drought-tolerant in rocky soils",
+      "PruningRequirement": "Rare",
+      "PruningDetails": "No routine pruning needed; remove dead inner branches in autumn only",
+      "ThermalSensitivity": "Hardy to -15°C; protect from cold, drying winds in exposed sites"
+    }
+  },
+  {
+    "Id": 9,
+    "Nickname": "Noble",
+    "CommonName": "Noble Fir",
+    "ScientificName": "Abies procera",
+    "Location": "Garden",
+    "HealthStatus": "Thriving",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Full Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/9_abies_procera/og/49107504112_6bd7effb8b_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=104d25dd44ce109f93d92256da256bca398d97d9dd6e0e0837624047b6f032ea",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/9_abies_procera/regular/49107504112_6bd7effb8b_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=a3dcea17d560568e3327d4c36534b256185fd8a42644514938c40e3c7342cbb3",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/9_abies_procera/regular/49107504112_6bd7effb8b_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=a3dcea17d560568e3327d4c36534b256185fd8a42644514938c40e3c7342cbb3",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/9_abies_procera/medium/49107504112_6bd7effb8b_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=bbcb49425df81e6d326e669303e6711212c192471339ac481139f4ec01617b37",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/9_abies_procera/small/49107504112_6bd7effb8b_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=80fdf6b53afea401fa17edf4d74e76038901c540e50236b91408e209d6f53b84",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/9_abies_procera/thumbnail/49107504112_6bd7effb8b_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=9dd185c5dbcb8614766d18290de1be63de5a7894d81035df2ff85df903beaf44",
+    "SoilMix": {
+      "Id": 7,
+      "PlantCatalogId": 9,
+      "RecipeName": "Pacific Northwest Mix",
+      "Ingredients": "45% Loam, 35% Organic Compost, 20% Perlite",
+      "Component1": "Loam",
+      "Percentage1": 45,
+      "Component2": "Organic Compost",
+      "Percentage2": 35,
+      "Component3": "Perlite",
+      "Percentage3": 20,
+      "Description": "Rich, moisture-retentive soil for this impressive native fir tree."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 8,
+        "PlantCatalogId": 9,
+        "Type": "Organic",
+        "Title": "Coffee Ground Mulch",
+        "Description": "Acidifies soil slightly and deters slugs from young saplings.",
+        "Instructions": "Spread a thin layer of used coffee grounds around the base. Do not pile against trunk. Reapply every 3 weeks."
+      }
+    ],
+    "CareProfile": {
+      "Id": 7,
+      "PlantCatalogId": 9,
+      "SunlightDetails": "Full sun; large stature demands an open position with unrestricted light",
+      "WaterDetails": "Deep weekly watering in summer; well-established trees need little supplemental water",
+      "PruningRequirement": "Minimal",
+      "PruningDetails": "Remove lower limbs in winter to raise canopy; avoid over-pruning",
+      "ThermalSensitivity": "Hardy to -25°C; native to Pacific Northwest mountains, very cold tolerant"
+    }
+  },
+  {
+    "Id": 10,
+    "Nickname": "Johin Maple",
+    "CommonName": "Johin Japanese Maple",
+    "ScientificName": "Acer 'Johin'",
+    "Location": "Patio",
+    "HealthStatus": "Healthy",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Partial Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/10_acer_johin/og/pexels-photo-2183508.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=7f12c3ee91b4cd288f83a139da2a98dc1d15f3ed3e03cbecb73073e881125ca2",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/10_acer_johin/regular/pexels-photo-2183508.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=dd0540e588f50aacd0e64b93668a7ce4e740129c8e30ca2a7eebe495f00bbbf5",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/10_acer_johin/regular/pexels-photo-2183508.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=dd0540e588f50aacd0e64b93668a7ce4e740129c8e30ca2a7eebe495f00bbbf5",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/10_acer_johin/medium/pexels-photo-2183508.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=2629c2470606e5347e141d67e5052ccf0a3a92ceee7d97695948a1290763bd92",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/10_acer_johin/small/pexels-photo-2183508.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=8806affbd87c674d8e6ad16346279a66b2faeca716ba0cd5ef3e67ae557a7a1a",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/10_acer_johin/thumbnail/pexels-photo-2183508.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=2a7528f03d2139f523c583b1339f7f72c08ba5550357558d563c5e968972160f",
+    "SoilMix": {
+      "Id": 8,
+      "PlantCatalogId": 10,
+      "RecipeName": "Japanese Maple Blend",
+      "Ingredients": "40% Akadama, 30% Compost, 30% Pumice",
+      "Component1": "Akadama",
+      "Percentage1": 40,
+      "Component2": "Compost",
+      "Percentage2": 30,
+      "Component3": "Pumice",
+      "Percentage3": 30,
+      "Description": "Well-draining acidic mix that promotes vibrant foliage color in Japanese maples."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 9,
+        "PlantCatalogId": 10,
+        "Type": "Organic",
+        "Title": "Seaweed Foliar Spray",
+        "Description": "Boosts overall plant vigor and improves stress tolerance.",
+        "Instructions": "Dilute 2 tbsp liquid seaweed in 1 litre of water. Spray foliage in the morning every 2 weeks in spring."
+      }
+    ],
+    "CareProfile": {
+      "Id": 8,
+      "PlantCatalogId": 10,
+      "SunlightDetails": "Partial sun to light shade; 3–4 hours of direct sun per day is ideal",
+      "WaterDetails": "Keep evenly moist; water when top 2cm of soil feels dry, especially in summer",
+      "PruningRequirement": "Late Winter",
+      "PruningDetails": "Prune before buds break to shape canopy and remove weak growth",
+      "ThermalSensitivity": "Hardy to -15°C; protect pot-grown specimens from hard freeze"
+    }
+  },
+  {
+    "Id": 11,
+    "Nickname": "Snakebark",
+    "CommonName": "Snakebark Maple",
+    "ScientificName": "Acer davidii",
+    "Location": "Garden",
+    "HealthStatus": "Thriving",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Partial Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/11_acer_davidii/og/6868591754_f4ac5b0510_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=bc4faac153d4a810ab79e2de42d04d241218fc2a181e434c0d7e6dff24b9148f",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/11_acer_davidii/regular/6868591754_f4ac5b0510_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=876b2c124e91b974a5bbcf3989f5a7f3e834328a5e23ce7e119d09f12501f1e6",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/11_acer_davidii/regular/6868591754_f4ac5b0510_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=876b2c124e91b974a5bbcf3989f5a7f3e834328a5e23ce7e119d09f12501f1e6",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/11_acer_davidii/medium/6868591754_f4ac5b0510_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=4d38ce2176bf6a734a24ccfac022ef4975bf5c7940ae4b3d991e041fa7ff3ee8",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/11_acer_davidii/small/6868591754_f4ac5b0510_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=41547d5185f894a9e01d33a016200c5bb3d5ed19e2031f940c1e5a38da8ca3db",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/11_acer_davidii/thumbnail/6868591754_f4ac5b0510_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=81d440c86028422078a2e9c325a2895534733e8f93cf740b2635b7a024e3eed2",
+    "SoilMix": {
+      "Id": 9,
+      "PlantCatalogId": 11,
+      "RecipeName": "Woodland Maple Mix",
+      "Ingredients": "50% Loam, 30% Leaf Mould, 20% Sand",
+      "Component1": "Loam",
+      "Percentage1": 50,
+      "Component2": "Leaf Mould",
+      "Percentage2": 30,
+      "Component3": "Sand",
+      "Percentage3": 20,
+      "Description": "Humus-rich moist soil replicating woodland floor conditions for this ornamental bark maple."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 10,
+        "PlantCatalogId": 11,
+        "Type": "Organic",
+        "Title": "Leaf Mould Top Dress",
+        "Description": "Keeps roots cool and adds organic matter through the growing season.",
+        "Instructions": "Apply 5cm layer of decomposed leaf mould around base in early spring. Do not place against bark."
+      }
+    ],
+    "CareProfile": {
+      "Id": 9,
+      "PlantCatalogId": 11,
+      "SunlightDetails": "Partial shade preferred; the distinctive striped bark shows best in dappled light",
+      "WaterDetails": "Moderate watering; keep soil moist in summer, reduce in winter",
+      "PruningRequirement": "Winter",
+      "PruningDetails": "Prune when fully dormant to retain the ornamental open branching structure",
+      "ThermalSensitivity": "Hardy to -20°C; young specimens benefit from wind protection in first winter"
+    }
+  },
+  {
+    "Id": 16,
+    "Nickname": "Paperbark",
+    "CommonName": "Paperbark Maple",
+    "ScientificName": "Acer griseum",
+    "Location": "Garden",
+    "HealthStatus": "Healthy",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Partial Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/16_acer_griseum/og/5158906371_ed08a86876_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=ffc7a7d26ee1a077ba2549f701b49b5c3169dec1cbc6bf0cdb926cec29010a4a",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/16_acer_griseum/regular/5158906371_ed08a86876_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=642ef9700e69e6f04addb0ce2b764a5672205079bc9facd138fe2b7d464c671b",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/16_acer_griseum/regular/5158906371_ed08a86876_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=642ef9700e69e6f04addb0ce2b764a5672205079bc9facd138fe2b7d464c671b",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/16_acer_griseum/medium/5158906371_ed08a86876_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=62ef25cb27e38c4df79b7152e40c0989c0d4e5d7e3a20c79d649d3828c09d269",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/16_acer_griseum/small/5158906371_ed08a86876_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=650e35a8dcace9f383199ef093e3b9e8288fd6bac844107cdffa5c738af9b5e0",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/16_acer_griseum/thumbnail/5158906371_ed08a86876_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=70191e1abe95cc24bedd85b4e836745cb6b6aa1f22529340643b578e570bf2c4",
+    "SoilMix": {
+      "Id": 10,
+      "PlantCatalogId": 16,
+      "RecipeName": "Ornamental Bark Mix",
+      "Ingredients": "45% Loam, 30% Compost, 25% Grit",
+      "Component1": "Loam",
+      "Percentage1": 45,
+      "Component2": "Compost",
+      "Percentage2": 30,
+      "Component3": "Grit",
+      "Percentage3": 25,
+      "Description": "Fertile but free-draining mix for the slow-growing paperbark maple with its spectacular cinnamon bark."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 11,
+        "PlantCatalogId": 16,
+        "Type": "Fertilizer",
+        "Title": "Fish Emulsion Feed",
+        "Description": "Encourages healthy slow growth and rich autumn color.",
+        "Instructions": "Dilute fish emulsion 1:10 with water. Apply to soil around drip line every 4 weeks, spring to midsummer only."
+      }
+    ],
+    "CareProfile": {
+      "Id": 10,
+      "PlantCatalogId": 16,
+      "SunlightDetails": "Partial sun to full sun; autumn colour is most vivid in sunny positions",
+      "WaterDetails": "Moderate; water weekly in summer heat, less in cool seasons",
+      "PruningRequirement": "Late Winter",
+      "PruningDetails": "Minimal pruning only — remove dead wood and inward-crossing branches",
+      "ThermalSensitivity": "Hardy to -20°C; the cinnamon bark is more susceptible to frost damage than the canopy"
+    }
+  },
+  {
+    "Id": 17,
+    "Nickname": "Fullmoon",
+    "CommonName": "Fullmoon Maple",
+    "ScientificName": "Acer japonicum",
+    "Location": "Garden",
+    "HealthStatus": "Thriving",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Partial Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/17_acer_japonicum/og/7175475239_52543c51b3_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=5a9b26642b9af00ba2b95bdb7b103d9e94f3666aba14499ad559d9e80d8f4921",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/17_acer_japonicum/regular/7175475239_52543c51b3_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=a8183d4a4c5658ccd15ae88594c9e540fe54fbe67377940a4d5872ff605967d6",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/17_acer_japonicum/regular/7175475239_52543c51b3_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=a8183d4a4c5658ccd15ae88594c9e540fe54fbe67377940a4d5872ff605967d6",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/17_acer_japonicum/medium/7175475239_52543c51b3_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=06f3fe83406c7e69890b9086971a4175ae627dab2ff99b11659652a404d29703",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/17_acer_japonicum/small/7175475239_52543c51b3_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=44c0a212e2994ceefa12f2e62d6b837e89e080616dbeed9324d018e50401f788",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/17_acer_japonicum/thumbnail/7175475239_52543c51b3_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=e522e7259005d69f24c2a5b2c0c57dcbaf3ebe90426a9317b90a7318cfd7e54d",
+    "SoilMix": {
+      "Id": 11,
+      "PlantCatalogId": 17,
+      "RecipeName": "Japonicum Blend",
+      "Ingredients": "40% Akadama, 35% Compost, 25% Perlite",
+      "Component1": "Akadama",
+      "Percentage1": 40,
+      "Component2": "Compost",
+      "Percentage2": 35,
+      "Component3": "Perlite",
+      "Percentage3": 25,
+      "Description": "Classic Japanese-style maple mix — moisture-retentive with great drainage for autumn color."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 12,
+        "PlantCatalogId": 17,
+        "Type": "Organic",
+        "Title": "Rice Water Foliar Feed",
+        "Description": "Provides trace minerals and promotes dense, lush leaf growth.",
+        "Instructions": "Use strained water from rinsing white rice. Apply to foliage and soil once per week during summer."
+      }
+    ],
+    "CareProfile": {
+      "Id": 11,
+      "PlantCatalogId": 17,
+      "SunlightDetails": "Partial shade; the broad palmate leaves scorch easily in strong midday sun",
+      "WaterDetails": "Keep consistently moist spring through summer; reduce watering in winter",
+      "PruningRequirement": "Late Winter",
+      "PruningDetails": "Prune lightly before bud break; remove dead tips and improve airflow through centre",
+      "ThermalSensitivity": "Hardy to -20°C; shelter from desiccating cold winds which damage leaf margins"
+    }
+  },
+  {
+    "Id": 27,
+    "Nickname": "Japanese Maple",
+    "CommonName": "Japanese Maple",
+    "ScientificName": "Acer palmatum",
+    "Location": "Living Room",
+    "HealthStatus": "Needs Pruning",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Indirect Light",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/27_acer_palmatum/og/2560px-Acer_palmatum_27Bloodgood27_kz01.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=b8f648c93ecdd2a1c269ed60c83d85ae6c7cddfd2056429bd4f30965f39f468f",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/27_acer_palmatum/regular/2560px-Acer_palmatum_27Bloodgood27_kz01.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=e2f285a0ee5ca07fa99f7736e001aa478d56843adc8b51c94b322bb386b97a45",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/27_acer_palmatum/regular/2560px-Acer_palmatum_27Bloodgood27_kz01.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=e2f285a0ee5ca07fa99f7736e001aa478d56843adc8b51c94b322bb386b97a45",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/27_acer_palmatum/medium/2560px-Acer_palmatum_27Bloodgood27_kz01.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=3a3661844607605a156fc4757bd7c6b006a0f4b64eb13d6400fca93e54e2b089",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/27_acer_palmatum/small/2560px-Acer_palmatum_27Bloodgood27_kz01.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=7c911d180aae9bbd3fb50fd92a786bafe801ca7e0c5c639f8535ded2767e2467",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/27_acer_palmatum/thumbnail/2560px-Acer_palmatum_27Bloodgood27_kz01.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=cee98815a1d6b8e7dc378c197a78096084da71666d8366e0bab2337d5c9a3da4",
+    "SoilMix": {
+      "Id": 12,
+      "PlantCatalogId": 27,
+      "RecipeName": "Palmatum Potting Mix",
+      "Ingredients": "35% Akadama, 35% Pumice, 30% Compost",
+      "Component1": "Akadama",
+      "Percentage1": 35,
+      "Component2": "Pumice",
+      "Percentage2": 35,
+      "Component3": "Compost",
+      "Percentage3": 30,
+      "Description": "Superb bonsai-inspired mix for potted Japanese maples. Retains moisture without waterlogging."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 13,
+        "PlantCatalogId": 27,
+        "Type": "Organic",
+        "Title": "Neem Oil Preventive Spray",
+        "Description": "Prevents scale insects and aphids before they colonize the delicate foliage.",
+        "Instructions": "Mix 1 tsp neem oil, 0.5 tsp dish soap in 1 litre of water. Spray all leaf surfaces fortnightly from spring."
+      },
+      {
+        "Id": 14,
+        "PlantCatalogId": 27,
+        "Type": "Fertilizer",
+        "Title": "Worm Casting Tea",
+        "Description": "Gentle balanced fertiliser that feeds without risk of leaf scorch.",
+        "Instructions": "Soak 1 cup worm castings in 2 litres of water overnight. Strain and water the base of the plant weekly in spring."
+      }
+    ],
+    "CareProfile": {
+      "Id": 12,
+      "PlantCatalogId": 27,
+      "SunlightDetails": "Indirect to partial light; direct afternoon sun causes leaf scorch on indoor specimens",
+      "WaterDetails": "Keep soil moist but never soggy; check moisture with finger before each watering",
+      "PruningRequirement": "Spring",
+      "PruningDetails": "Prune crossing branches and thin dense areas after the last frost in spring",
+      "ThermalSensitivity": "Hardy to -20°C outdoors; indoor plants need protection from cold draughts and heating vents"
+    }
+  },
+  {
+    "Id": 43,
+    "Nickname": "Bloodgood",
+    "CommonName": "Bloodgood Japanese Maple",
+    "ScientificName": "Acer palmatum 'Bloodgood'",
+    "Location": "Patio",
+    "HealthStatus": "Thriving",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Partial Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/43_acer_palmatum_bloodgood/og/47923603032_5a96106ac6_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=db6898303056dde9dff9cb5f300e89dba9810f509be252cee65af59529109207",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/43_acer_palmatum_bloodgood/regular/47923603032_5a96106ac6_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=bf5f46d20e29232e9fe9439ece4948e5ad373868caaa27d31221e939c4c45c53",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/43_acer_palmatum_bloodgood/regular/47923603032_5a96106ac6_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=bf5f46d20e29232e9fe9439ece4948e5ad373868caaa27d31221e939c4c45c53",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/43_acer_palmatum_bloodgood/medium/47923603032_5a96106ac6_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=6d53466b48d504aec83a16d8c282b4d45c8bddc59c3f7f62e5330163ba23b805",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/43_acer_palmatum_bloodgood/small/47923603032_5a96106ac6_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=0e9bfa534e1c63cabbaed8da0b569e0640702ec98bea8bbcfbfef63cdab5c6db",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/43_acer_palmatum_bloodgood/thumbnail/47923603032_5a96106ac6_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=52074f62d481ae6c8766140b00f4eb8485dcc1ec7570cd36db31b2812a021630",
+    "SoilMix": {
+      "Id": 13,
+      "PlantCatalogId": 43,
+      "RecipeName": "Bloodgood Deep Red Mix",
+      "Ingredients": "40% Compost, 35% Akadama, 25% Perlite",
+      "Component1": "Compost",
+      "Percentage1": 40,
+      "Component2": "Akadama",
+      "Percentage2": 35,
+      "Component3": "Perlite",
+      "Percentage3": 25,
+      "Description": "Nutrient-rich acidic mix that intensifies the deep burgundy-red pigmentation."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 15,
+        "PlantCatalogId": 43,
+        "Type": "Organic",
+        "Title": "Apple Cider Vinegar Acidifier",
+        "Description": "Lowers soil pH to enhance leaf color intensity in purple-leaved maples.",
+        "Instructions": "Add 1 tbsp ACV to 4 litres of water. Use in place of regular watering once per month. Do not over-apply."
+      }
+    ],
+    "CareProfile": {
+      "Id": 13,
+      "PlantCatalogId": 43,
+      "SunlightDetails": "Partial sun; 4–6 hours of morning sun deepens the burgundy-red leaf colour",
+      "WaterDetails": "Regular watering; keep evenly moist, especially in summer. Avoid letting soil dry completely",
+      "PruningRequirement": "Late Winter",
+      "PruningDetails": "Remove congested growth and dead tips; thinning improves air circulation and colour",
+      "ThermalSensitivity": "Hardy to -20°C; mulch roots heavily in colder zones to protect crown"
+    }
+  },
+  {
+    "Id": 46,
+    "Nickname": "Burgundy Lace",
+    "CommonName": "Burgundy Lace Japanese Maple",
+    "ScientificName": "Acer palmatum 'Burgundy Lace'",
+    "Location": "Garden",
+    "HealthStatus": "Healthy",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Partial Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/46_acer_palmatum_burgundy_lace/og/50082938346_1040fdd690_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=75a7288b4ea555f110a3d833066a4fd24092bf77febdad525de4b940ece80320",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/46_acer_palmatum_burgundy_lace/regular/50082938346_1040fdd690_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=7c51271f98f6d0d7a52c796481e1d618fc49d3c0074bffdb6dd94a3370b0d586",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/46_acer_palmatum_burgundy_lace/regular/50082938346_1040fdd690_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=7c51271f98f6d0d7a52c796481e1d618fc49d3c0074bffdb6dd94a3370b0d586",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/46_acer_palmatum_burgundy_lace/medium/50082938346_1040fdd690_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=5587d630e071b4c8b62fb5700454adacd7b5f68495a1f948f3b05acc625c08f3",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/46_acer_palmatum_burgundy_lace/small/50082938346_1040fdd690_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=a9c540cfcc43c62004bd84ae7a55909adbbe44f705310f2775fe3b9a8a9d338a",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/46_acer_palmatum_burgundy_lace/thumbnail/50082938346_1040fdd690_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=e97b4af0a5a1eadf7e2afdb97b35633c06ada86ec052e775e2948c467f7bb63c",
+    "SoilMix": {
+      "Id": 14,
+      "PlantCatalogId": 46,
+      "RecipeName": "Laceleaf Maple Mix",
+      "Ingredients": "40% Akadama, 30% Pumice, 30% Organic Compost",
+      "Component1": "Akadama",
+      "Percentage1": 40,
+      "Component2": "Pumice",
+      "Percentage2": 30,
+      "Component3": "Organic Compost",
+      "Percentage3": 30,
+      "Description": "Airy, well-draining mix that prevents root rot in the delicate laceleaf varieties."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 16,
+        "PlantCatalogId": 46,
+        "Type": "Organic",
+        "Title": "Chamomile Tea Drench",
+        "Description": "Prevents damping off and mild fungal issues in humid conditions.",
+        "Instructions": "Brew strong chamomile tea, cool, and dilute 1:5 with water. Water the soil base once a week during humid weather."
+      }
+    ],
+    "CareProfile": {
+      "Id": 14,
+      "PlantCatalogId": 46,
+      "SunlightDetails": "Partial sun; filtered light preserves the deep burgundy lace without bleaching",
+      "WaterDetails": "Moderate; water deeply twice a week in hot weather, reduce in cool months",
+      "PruningRequirement": "Spring",
+      "PruningDetails": "Carefully remove dead threadleaf branches using fine scissors; avoid cutting live green growth",
+      "ThermalSensitivity": "Hardy to -18°C; the finely cut leaves are more wind-sensitive than standard maples"
+    }
+  },
+  {
+    "Id": 47,
+    "Nickname": "Butterfly Maple",
+    "CommonName": "Butterfly Variegated Japanese Maple",
+    "ScientificName": "Acer palmatum 'Butterfly'",
+    "Location": "Terrace Garden",
+    "HealthStatus": "Thirsty",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Partial Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/47_acer_palmatum_butterfly/og/20251027248_dc9cfd6f65_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=bb53aff9f4990e2c5c3d3be0e11860e9ff50c1c4e38b679b531c9afa9fa91679",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/47_acer_palmatum_butterfly/regular/20251027248_dc9cfd6f65_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=99ca88dfb0c533e138af507737c6a2a2e8a5901b3b84646603140f9808ddd702",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/47_acer_palmatum_butterfly/regular/20251027248_dc9cfd6f65_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=99ca88dfb0c533e138af507737c6a2a2e8a5901b3b84646603140f9808ddd702",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/47_acer_palmatum_butterfly/medium/20251027248_dc9cfd6f65_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=7fc408328d3db3921e6b2257a09c6573d79721cb76d0792e00ffaaa435239da4",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/47_acer_palmatum_butterfly/small/20251027248_dc9cfd6f65_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=85966573533602fd52072a96d16a223e5303438a90808723ddb7e7cbec92923c",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/47_acer_palmatum_butterfly/thumbnail/20251027248_dc9cfd6f65_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063550Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=04e7dece359d2f70a7e8b1bdf3995cc50765ee2b15f364887484fe57c447a70a",
+    "SoilMix": {
+      "Id": 15,
+      "PlantCatalogId": 47,
+      "RecipeName": "Variegated Maple Mix",
+      "Ingredients": "45% Compost, 30% Perlite, 25% Coco Coir",
+      "Component1": "Compost",
+      "Percentage1": 45,
+      "Component2": "Perlite",
+      "Percentage2": 30,
+      "Component3": "Coco Coir",
+      "Percentage3": 25,
+      "Description": "Moisture-holding yet breathable mix for the variegated Butterfly maple, preventing leaf scorch."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 17,
+        "PlantCatalogId": 47,
+        "Type": "Organic",
+        "Title": "Aloe Vera Root Drench",
+        "Description": "Stimulates root growth and helps recover a thirsty, stressed plant quickly.",
+        "Instructions": "Blend 2 tbsp fresh aloe gel in 1 litre of water. Pour around base of plant. Repeat every 10 days during stress recovery."
+      },
+      {
+        "Id": 18,
+        "PlantCatalogId": 47,
+        "Type": "Fertilizer",
+        "Title": "Diluted Liquid Kelp",
+        "Description": "Restores nutrient balance and boosts variegated leaf colour contrast.",
+        "Instructions": "Mix 1 tbsp liquid kelp in 4 litres of water. Apply to soil every 2 weeks through spring and early summer."
+      }
+    ],
+    "CareProfile": {
+      "Id": 15,
+      "PlantCatalogId": 47,
+      "SunlightDetails": "Partial shade essential; variegated leaves are highly prone to sun scorch",
+      "WaterDetails": "High moisture needs; water frequently and mist foliage in dry weather to prevent leaf scorch",
+      "PruningRequirement": "Spring",
+      "PruningDetails": "Light spring pruning to shape; reverted all-green shoots must be removed promptly",
+      "ThermalSensitivity": "Hardy to -18°C; more cold-sensitive than plain-leaved maples, shelter in harsh winters"
+    }
+  },
+  {
+    "Id": 23,
+    "Nickname": "Big Leaf",
+    "CommonName": "Big Leaf Maple",
+    "ScientificName": "Acer macrophyllum",
+    "Location": "Garden",
+    "HealthStatus": "Healthy",
+    "WaterRequirement": "High",
+    "SunRequirement": "Partial Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/23_acer_macrophyllum/og/52135137216_8a124b5188_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=20ba1f551c2b79daacecc34f4e7d6b6b5eb330fc2c654e078aad126734317ccf",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/23_acer_macrophyllum/regular/52135137216_8a124b5188_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=cebac4ff1206ae93a7d163e455401a2d95f1331e050e824e56986669f3370a6e",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/23_acer_macrophyllum/regular/52135137216_8a124b5188_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=cebac4ff1206ae93a7d163e455401a2d95f1331e050e824e56986669f3370a6e",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/23_acer_macrophyllum/medium/52135137216_8a124b5188_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=c4ffe11d70f6862e2edbc10cb32b281fcc7d95a0fe899ee48ebfb667e6294938",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/23_acer_macrophyllum/small/52135137216_8a124b5188_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=c54268cb5015d35638a42188a33a9c9101494bbe476d5ac2176c327d56fdb0f3",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/23_acer_macrophyllum/thumbnail/52135137216_8a124b5188_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=ce6dbc8e31c43c6180b66177c5e7050ccc8f9773c9a6a3f505fb4d1660871b92",
+    "SoilMix": {
+      "Id": 16,
+      "PlantCatalogId": 23,
+      "RecipeName": "Oregon Maple Mix",
+      "Ingredients": "50% Loam, 30% Compost, 20% Bark Mulch",
+      "Component1": "Loam",
+      "Percentage1": 50,
+      "Component2": "Compost",
+      "Percentage2": 30,
+      "Component3": "Bark Mulch",
+      "Percentage3": 20,
+      "Description": "Deep, moisture-retentive soil for this large-canopy native maple from the Pacific Northwest."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 19,
+        "PlantCatalogId": 23,
+        "Type": "Fertilizer",
+        "Title": "Compost Tea Deep Feed",
+        "Description": "Supports vigorous growth in this fast-growing large maple.",
+        "Instructions": "Brew 1 cup mature compost in 4 litres of water for 48 hours with aeration. Water deeply around the drip line monthly."
+      }
+    ],
+    "CareProfile": {
+      "Id": 16,
+      "PlantCatalogId": 23,
+      "SunlightDetails": "Partial sun to full sun; tolerates a wide range of light conditions",
+      "WaterDetails": "High water needs; deep watering twice weekly in summer, the large leaf area loses moisture quickly",
+      "PruningRequirement": "Winter",
+      "PruningDetails": "Prune when fully dormant; this large tree tolerates hard pruning to control size",
+      "ThermalSensitivity": "Hardy to -20°C; well-adapted to Pacific Northwest wet winters and dry summers"
+    }
+  },
+  {
+    "Id": 25,
+    "Nickname": "Flamingo Box",
+    "CommonName": "Flamingo Boxelder",
+    "ScientificName": "Acer negundo 'Flamingo'",
+    "Location": "Garden",
+    "HealthStatus": "Healthy",
+    "WaterRequirement": "Medium",
+    "SunRequirement": "Full Sun",
+    "OriginalUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/25_acer_negundo_flamingo/og/5867345385_a9dff5bee7_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=97811b1dd97ad63518f85d603cc33561718687fe8c3d34b87f6c76dee6b6ec77",
+    "ImageUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/25_acer_negundo_flamingo/regular/5867345385_a9dff5bee7_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=9a77d37ddc719f9e4076c550b9c228d8821b68a7ee68bb9770ed32d230b47cc2",
+    "RegularUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/25_acer_negundo_flamingo/regular/5867345385_a9dff5bee7_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=9a77d37ddc719f9e4076c550b9c228d8821b68a7ee68bb9770ed32d230b47cc2",
+    "MediumUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/25_acer_negundo_flamingo/medium/5867345385_a9dff5bee7_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=cca4672caae078af01efc1a0a78b5024c971ac75b3538e4375f23119cab36d1f",
+    "SmallUrl": "https://s3.us-central-1.wasabisys.com/perenual/species_image/25_acer_negundo_flamingo/small/5867345385_a9dff5bee7_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=24b8b9a87535be6dbbbe5cbb782d4ae7c52511aeb3e604ea334064077b59fbc5",
+    "Thumbnail": "https://s3.us-central-1.wasabisys.com/perenual/species_image/25_acer_negundo_flamingo/thumbnail/5867345385_a9dff5bee7_b.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0MPGHU7CIPXNPMVWMXUW%2F20260603%2Fus-central-1%2Fs3%2Faws4_request&X-Amz-Date=20260603T063429Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=8f4ed8f125ac368e7f6f3ef14c5ad0e5c778a9b1c20e2573891413923fe57c88",
+    "SoilMix": {
+      "Id": 17,
+      "PlantCatalogId": 25,
+      "RecipeName": "Boxelder General Mix",
+      "Ingredients": "50% Loam, 30% Sand, 20% Compost",
+      "Component1": "Loam",
+      "Percentage1": 50,
+      "Component2": "Sand",
+      "Percentage2": 30,
+      "Component3": "Compost",
+      "Percentage3": 20,
+      "Description": "Adaptable, free-draining general mix for this tough and ornamental variegated boxelder."
+    },
+    "HomeRemedies": [
+      {
+        "Id": 20,
+        "PlantCatalogId": 25,
+        "Type": "Organic",
+        "Title": "Insecticidal Soap Spray",
+        "Description": "Controls boxelder bugs and aphids without harming the ornamental foliage.",
+        "Instructions": "Mix 1.5 tsp mild castile soap in 1 litre of water. Spray directly on insects and affected areas. Rinse foliage after 2 hours."
+      }
+    ],
+    "CareProfile": {
+      "Id": 17,
+      "PlantCatalogId": 25,
+      "SunlightDetails": "Full sun preferred; the pink and white variegation fades in shade",
+      "WaterDetails": "Moderate watering; fairly drought-tolerant once established but performs better with regular moisture",
+      "PruningRequirement": "Early Spring",
+      "PruningDetails": "Hard pruning in early spring encourages fresh variegated growth; old wood loses colour",
+      "ThermalSensitivity": "Hardy to -25°C; one of the most cold-hardy maple cultivars available"
+    }
+  }
+]

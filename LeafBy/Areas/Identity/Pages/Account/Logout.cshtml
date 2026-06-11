@@ -1,0 +1,51 @@
+﻿@* @page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Log out";
+}
+
+<header>
+    <h1>@ViewData["Title"]</h1>
+    @{
+        if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
+            </form>
+        }
+        else
+        {
+            <p>You have successfully logged out of the application.</p>
+        }
+    }
+</header> *@
+@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Log out";
+}
+
+<div class="text-center mt-4">
+    <div class="d-inline-flex align-items-center justify-content-center bg-light rounded-circle mb-4" style="width: 80px; height: 80px;">
+        <i class="fas fa-door-closed fs-2" style="color: #5a6d63;"></i>
+    </div>
+
+    <h2 class="fw-bold mb-2" style="color: #0c3b2e;">Disconnected</h2>
+
+    @{
+        if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <p class="text-muted mb-5">Are you sure you want to exit the laboratory?</p>
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="btn w-100 py-3 rounded-pill fw-bold" style="background-color: #d84315; color: white;">Confirm Logout</button>
+            </form>
+        }
+        else
+        {
+            <p class="text-muted mb-5">You have successfully logged out of the application.</p>
+            <a asp-page="./Login" class="btn w-100 py-3 rounded-pill fw-bold" style="background-color: #0c3b2e; color: white; text-decoration: none;">
+                Sign Back In
+            </a>
+        }
+    }
+</div>

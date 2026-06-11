@@ -1,0 +1,121 @@
+﻿<div class="glass-card text-center">
+    <h3 class="mb-2">Categorize this scan</h3>
+    <p class="text-muted mb-4" style="font-size: 0.9rem;">Choose a category for specialized AI diagnosis and faster results.</p>
+
+    <form id="scannerForm">
+
+        <div class="mb-4">
+            <div class="file-upload-wrapper">
+                <label for="scanImage" class="form-label text-muted fw-bold mb-1" style="font-size: 0.8rem; cursor: pointer;">
+                    <i class="bi bi-camera-fill me-1"></i> Upload or Capture Image
+                </label>
+                <input class="form-control form-control-sm bg-transparent border-0" type="file" id="scanImage" accept="image/*" required>
+            </div>
+        </div>
+
+        <input type="radio" name="scanType" id="typePlant" value="Plant" class="d-none" checked>
+        <label class="option-card d-flex align-items-center mb-3 p-3 w-100 text-start" for="typePlant">
+            <div class="icon-box icon-plant me-3">
+                <i class="bi bi-flower1"></i>
+            </div>
+            <div>
+                <h6 class="mb-0 fw-bold text-dark">Plant ID</h6>
+                <small class="text-muted" style="font-size: 0.75rem;">Identify genus, species & care needs</small>
+            </div>
+        </label>
+
+        <input type="radio" name="scanType" id="typePest" value="Pest" class="d-none">
+        <label class="option-card d-flex align-items-center mb-3 p-3 w-100 text-start" for="typePest">
+            <div class="icon-box icon-pest me-3">
+                <i class="bi bi-bug-fill"></i>
+            </div>
+            <div>
+                <h6 class="mb-0 fw-bold text-dark">Pest ID</h6>
+                <small class="text-muted" style="font-size: 0.75rem;">Detect insects and get treatment plans</small>
+            </div>
+        </label>
+
+        <input type="radio" name="scanType" id="typeDisease" value="Disease" class="d-none">
+        <label class="option-card d-flex align-items-center mb-4 p-3 w-100 text-start" for="typeDisease">
+            <div class="icon-box icon-disease me-3">
+                <i class="bi bi-virus"></i>
+            </div>
+            <div>
+                <h6 class="mb-0 fw-bold text-dark">Disease ID</h6>
+                <small class="text-muted" style="font-size: 0.75rem;">Diagnose spots, wilts & fungal issues</small>
+            </div>
+        </label>
+
+        <button type="submit" id="btnStartScan" class="btn btn-maroon w-100 rounded-pill py-2 mb-3">Start Generic Scan</button>
+
+        <a href="#" class="text-muted text-decoration-none" style="font-size: 0.85rem;">Cancel</a>
+    </form>
+</div>
+
+
+
+            @section Scripts{
+                <script>
+                       $(document).ready(function() {
+
+            // 1. Dynamic Button Text based on Radio Selection
+            $('input[name="scanType"]').change(function() {
+                let selectedCategory = $(this).val();
+                $('#btnStartScan').text(`Start ${selectedCategory} Scan`);
+            });
+
+            // 2. Handle Form Submission & File Data
+            $('#scannerForm').submit(function(e) {
+                e.preventDefault(); // Prevent standard page reload
+
+                // Grab the selected radio button value
+                let category = $('input[name="scanType"]:checked').val();
+
+                // Grab the uploaded file
+                let fileInput = $('#scanImage')[0];
+                let file = fileInput.files[0];
+
+                // Validation
+                if (!file) {
+                    alert("Please capture or select an image first.");
+                    return;
+                }
+
+                // Prepare the data using FormData (required for files)
+                var formData = new FormData();
+                formData.append("scanImage", file);
+                formData.append("category", category);
+
+                // UI Feedback: Show Spinner and disable button
+                let $btn = $('#btnStartScan');
+                let originalText = $btn.text(); // Save what the button originally said
+                $btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-2"></span> Analyzing...');
+
+                // Execute AJAX Call
+                $.ajax({
+                    url: '/PlantScanner/UploadToSession',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        if (res.success) {
+                            // Redirect to the results page!
+                            window.location.href = res.redirectUrl;
+                        } else {
+                            alert(res.message);
+                        }
+                    },
+                    error: function () {
+                        alert("Error uploading scan.");
+                    },
+                    complete: function () {
+                        // Restore the button back to normal if there is an error
+                        $btn.prop('disabled', false).text(originalText);
+                    }
+                });
+            });
+
+        });
+    </script>
+            }

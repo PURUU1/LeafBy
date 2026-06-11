@@ -1,0 +1,25 @@
+﻿@* @model string
+
+@if (!String.IsNullOrEmpty(Model))
+{
+    var statusMessageClass = Model.StartsWith("Error") ? "danger" : "success";
+    <div class="alert alert-@statusMessageClass alert-dismissible" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        @Model
+    </div>
+} *@
+
+@model string
+
+@if (!String.IsNullOrEmpty(Model))
+{
+    var isError = Model.StartsWith("Error");
+    var bgColor = isError ? "rgba(216, 67, 21, 0.1)" : "#EBF5ED";
+    var textColor = isError ? "#d84315" : "#0c3b2e";
+    var iconClass = isError ? "fa-exclamation-circle" : "fa-check-circle";
+
+    <div class="alert alert-dismissible rounded-4 border-0 p-3 mb-4" style="background-color: @bgColor; color: @textColor;" role="alert">
+        <i class="fas @iconClass me-2"></i> @Model
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}

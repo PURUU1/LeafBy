@@ -1,0 +1,103 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<style>
+    /* Dark inputs specifically for the dashboard */
+    .dashboard-dark-input {
+        background-color: #333333;
+        border: 1px solid #444444;
+        color: #ffffff;
+        border-radius: 8px;
+        padding: 0.8rem 1rem;
+        width: 100%;
+    }
+
+        .dashboard-dark-input:focus {
+            background-color: #3d3d3d;
+            outline: none;
+            border-color: #1a422b;
+        }
+
+    .section-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        color: #9ca3af;
+        text-transform: uppercase;
+        border-bottom: 1px solid #f3f4f6;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .label-dark {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #4b5563;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+</style>
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="card-panel p-4 p-md-5 mb-4 shadow-sm border-0">
+    <h6 class="section-label">Personal Information</h6>
+
+    <form id="profile-form" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+        @* <div class="row g-4 mb-4">
+            <div class="col-md-6">
+                <label class="label-dark">First Name</label>
+                <input class="dashboard-dark-input" value="" disabled />
+            </div>
+            <div class="col-md-6">
+                <label class="label-dark">Last Name</label>
+                <input class="dashboard-dark-input" value="" disabled />
+            </div>
+        </div> *@
+
+        <div class="mb-4">
+            <label asp-for="Username" class="label-dark">Username</label>
+            <div class="d-flex align-items-center dashboard-dark-input p-0 overflow-hidden">
+                <span class="text-white px-3 border-end border-secondary">@@</span>
+                <input asp-for="Username" class="border-0 bg-transparent text-white w-100 py-2 ps-3" disabled />
+            </div>
+        </div>
+
+        <div class="mb-5">
+            <label asp-for="Input.PhoneNumber" class="label-dark">Phone Number</label>
+            <div class="d-flex align-items-stretch overflow-hidden rounded-3" style="background-color: #333; border: 1px solid #444;">
+                <span class="d-flex align-items-center px-3 fw-bold text-success" style="background-color: #e8f3ec; font-size: 0.85rem;">IN +91</span>
+                <input asp-for="Input.PhoneNumber" class="border-0 bg-transparent text-white w-100 py-2 ps-3 focus-ring-none" style="outline: none;" />
+            </div>
+            <span asp-validation-for="Input.PhoneNumber" class="text-danger small mt-1 d-block"></span>
+        </div>
+
+        <div class="d-flex gap-3">
+            <button id="update-profile-button" type="submit" class="btn px-4 py-2 rounded-3 text-muted fw-bold" style="border: 1px solid #e5e7eb; background: #fff; opacity: 0.5;">Save changes</button>
+            <button type="button" class="btn px-4 py-2 rounded-3 text-muted fw-bold" style="border: 1px solid #e5e7eb; background: #fff;">Cancel</button>
+        </div>
+    </form>
+</div>
+
+@* <div class="card-panel p-4 p-md-5 shadow-sm border-0">
+    <h6 class="section-label">Danger Zone</h6>
+
+    <h6 class="text-danger fw-bold mb-1">Delete your account</h6>
+    <p class="text-muted small mb-4">This removes all your plants, listings, and data. This cannot be undone.</p>
+
+    <button class="btn px-4 py-2 rounded-3 text-danger fw-bold" style="border: 1px solid #fee2e2; background: #fff; opacity: 0.5;">
+        Delete account
+    </button>
+</div> *@
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

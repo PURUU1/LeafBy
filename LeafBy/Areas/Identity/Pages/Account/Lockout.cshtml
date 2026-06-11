@@ -1,0 +1,22 @@
+﻿@* @page
+@model LockoutModel
+@{
+    ViewData["Title"] = "Locked out";
+}
+
+<header>
+    <h1 class="text-danger">@ViewData["Title"]</h1>
+    <p class="text-danger">This account has been locked out, please try again later.</p>
+</header> *@
+@page
+@model LockoutModel
+@{
+    ViewData["Title"] = "Locked Out";
+}
+<div class="text-center mt-4">
+    <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-4" style="width: 80px; height: 80px; background-color: rgba(216, 67, 21, 0.1);">
+        <i class="fas fa-lock fs-2" style="color: #d84315;"></i>
+    </div>
+    <h2 class="fw-bold mb-2 text-danger">Account Locked</h2>
+    <p class="text-muted mb-5">This account has been temporarily locked out due to multiple failed login attempts. Please try again later.</p>
+</div>

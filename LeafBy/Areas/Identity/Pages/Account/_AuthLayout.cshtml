@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LeafBy</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="~/images/logo-green.svg">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+
+        /* Serif Headings */
+        .serif-heading {
+            font-family: 'Playfair Display', serif;
+            color: #111827;
+        }
+
+        /* Typography */
+        .super-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #4b5563;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Dark Inputs */
+        .input-dark {
+            background-color: #2d2d2d;
+            border: 1px solid #404040;
+            color: #ffffff;
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+            .input-dark::placeholder {
+                color: #9ca3af;
+            }
+
+            .input-dark:focus {
+                background-color: #383838;
+                border-color: #1a422b;
+                color: white;
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(26,66,43,0.2);
+            }
+
+        /* Layout */
+        .split-container {
+            display: flex;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-side {
+            flex: 1.1;
+            background-color: #163824;
+            position: relative;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 5rem;
+        }
+
+        .form-side {
+            flex: 1;
+            padding: 4rem 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        /* Badges */
+        .glass-badge {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        @@media (max-width: 992px) {
+            .hero-side {
+                display: none;
+            }
+
+            .form-side {
+                padding: 3rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="position-absolute w-100 d-flex justify-content-between px-4 py-3" style="z-index: 10; background: #222; border-bottom: 1px solid #333;">
+        <div class="d-flex gap-4">
+            <a href="/Identity/Account/Login" class="text-white text-decoration-none small fw-bold pb-1 @(ViewData["Title"].ToString() == "Log in" ? "border-bottom border-success text-success" : "")">LOGIN</a>
+            <a href="/Identity/Account/Register" class="text-white text-decoration-none small fw-bold pb-1 @(ViewData["Title"].ToString() == "Register" ? "border-bottom border-success text-success" : "")">REGISTER</a>
+            <a href="/Identity/Account/ForgotPassword" class="text-white text-decoration-none small fw-bold pb-1 @(ViewData["Title"].ToString() == "Forgot Password" ? "border-bottom border-success text-success" : "")">FORGOT PASSWORD</a>
+        </div>
+    </nav>
+
+    <div class="split-container">
+        <div class="hero-side">
+            <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: radial-gradient(circle at top right, rgba(255,255,255,0.05) 0%, transparent 40%); pointer-events: none;"></div>
+
+            <div class="d-flex align-items-center gap-2 mb-5">
+                @* <div class="bg-success rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;"><i class="bi bi-tree-fill text-white"></i></div> *@
+                <img src="~/images/logo-black.svg" width="70px"/>
+                <h3 class="serif-heading text-white mb-0">LeafBy</h3>
+            </div>
+
+            @RenderSection("HeroContent", required: false)
+        </div>
+
+        <div class="form-side">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

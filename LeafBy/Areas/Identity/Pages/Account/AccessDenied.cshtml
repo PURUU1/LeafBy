@@ -1,0 +1,24 @@
+﻿@* @page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Access denied";
+}
+
+<header>
+    <h1 class="text-danger">@ViewData["Title"]</h1>
+    <p class="text-danger">You do not have access to this resource.</p>
+</header> *@
+
+@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Access Denied";
+}
+<div class="text-center mt-4">
+    <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-4" style="width: 80px; height: 80px; background-color: rgba(216, 67, 21, 0.1);">
+        <i class="fas fa-ban fs-2" style="color: #d84315;"></i>
+    </div>
+    <h2 class="fw-bold mb-2 text-danger">Restricted Area</h2>
+    <p class="text-muted mb-5">You do not possess the required clearance level to view this section of the laboratory.</p>
+    <a href="~/" class="btn w-100 py-3 rounded-pill fw-bold" style="background-color: #0c3b2e; color: white; text-decoration: none;">Return to Dashboard</a>
+</div>
