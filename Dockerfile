@@ -1,11 +1,13 @@
-﻿# Use the .NET 9 SDK to build the app
+# Use the .NET 9 SDK to build the app
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
 # Copy everything and build the project
 COPY . .
-RUN dotnet restore "LeafBy.csproj"
-RUN dotnet publish "LeafBy.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# The builder will now look INSIDE the LeafBy folder!
+RUN dotnet restore "LeafBy/LeafBy.csproj"
+RUN dotnet publish "LeafBy/LeafBy.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Use the .NET 9 Runtime to run the app
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
