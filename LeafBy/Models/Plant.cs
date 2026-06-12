@@ -16,6 +16,7 @@ namespace LeafBy.Models
         public string ScientificName { get; set; } = string.Empty;
         public string Location { get; set; } = string.Empty; // e.g., "Living Room", "Patio", "Terrace Garden"
         public string HealthStatus { get; set; } = string.Empty; // e.g., "Healthy", "Thirsty", "Thriving", "Needs Pruning"
+        [Column(TypeName = "text")]
         public string ImageUrl { get; set; } = string.Empty;
         public string WaterRequirement { get; set; } = "Medium"; // "Low", "Medium", "High"
         public string SunRequirement { get; set; } = "Partial Sun"; // "Full Sun", "6+ Hours", "Indirect Light"

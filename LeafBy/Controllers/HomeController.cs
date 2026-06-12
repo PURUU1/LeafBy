@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Build.Utilities;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Net.Http;
@@ -124,25 +125,46 @@ namespace LeafBy.Controllers
             return Json(tasksInRange);
         }
 
+        
         [HttpPost]
         public IActionResult AddTask([FromBody] CalenderTask newTask)
         {
-            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (currentUserId == null)
+            // TRAP 1: Did the JSON Binder panic? 
+            if (!ModelState.IsValid)
             {
-                return Json(new { success = false, message = "Unauthorized to update this task." });
+                var errors = string.Join(" | ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+                return Json(new { success = false, message = "Binding Failed: " + errors });
             }
 
+            string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(currentUserId))
             {
                 return Json(new { success = false, message = "You must be logged in to add a task." });
             }
 
+            // Assign the user and fix the Postgres DateTime requirement
             newTask.AppUserId = currentUserId;
 
-            _DB.CalendarTasks.Add(newTask);
-            _DB.SaveChanges();
-            return Json(new { success = true, message = "Task added successfully!" });
+            newTask.TaskDate = DateTime.SpecifyKind(newTask.TaskDate, DateTimeKind.Utc);
+
+            // The Safety Net: If the binder somehow forced a 0, turn it back into a true SQL null
+            if (newTask.MyPlantId == 0)
+            {
+                newTask.MyPlantId = null;
+            }
+
+            try
+            {
+                _DB.CalendarTasks.Add(newTask);
+                _DB.SaveChanges();
+                return Json(new { success = true, message = "Task added successfully!" });
+            }
+            catch (Exception ex)
+            {
+                // TRAP 2: Extract the EXACT database rejection reason (InnerException)
+                string dbError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                return Json(new { success = false, message = "Database Error: " + dbError });
+            }
         }
 
         public class CompleteTaskRequest

@@ -67,12 +67,6 @@
     </style>
 }
 
-<!-- ========================================== -->
-<!-- 3. MODALS (HIDDEN POPUPS)                  -->
-<!-- ========================================== -->
-<!-- Add Task Modal -->
-
-
 <div class="modal fade" id="addTaskModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow" style="border-radius: 20px; background-color: #f7f9f7;">
@@ -97,14 +91,37 @@
 
                     <label class="form-label fw-bold mb-2" style="font-size: 0.75rem; color: #5a6d63;">TASK CATEGORY</label>
                     <div class="d-flex flex-wrap gap-2 mb-4">
-                        <input type="radio" class="btn-check" name="category" id="catSow" value="Sow" checked>
-                        <label class="btn btn-outline-secondary rounded-pill px-3 py-1" for="catSow"><i class="fas fa-seedling me-1"></i> Sow</label>
+
+                        <input type="radio" class="btn-check" name="category" id="catWater" value="Water" checked>
+                        <label class="btn btn-outline-secondary rounded-pill px-3 py-1" for="catWater">
+                            <i class="bi bi-droplet me-1"></i> Water
+                        </label>
+
+                        <input type="radio" class="btn-check" name="category" id="catSow" value="Sow">
+                        <label class="btn btn-outline-secondary rounded-pill px-3 py-1" for="catSow">
+                            <i class="bi bi-flower1 me-1"></i> Sow
+                        </label>
+
+                        <input type="radio" class="btn-check" name="category" id="catPrune" value="Prune">
+                        <label class="btn btn-outline-secondary rounded-pill px-3 py-1" for="catPrune">
+                            <i class="bi bi-scissors me-1"></i> Prune
+                        </label>
 
                         <input type="radio" class="btn-check" name="category" id="catFertilize" value="Fertilize">
-                        <label class="btn btn-outline-secondary rounded-pill px-3 py-1" for="catFertilize"><i class="fas fa-leaf me-1"></i> Fertilize</label>
+                        <label class="btn btn-outline-secondary rounded-pill px-3 py-1" for="catFertilize">
+                            <i class="bi bi-flask me-1"></i> Fertilize
+                        </label>
 
-                        <input type="radio" class="btn-check" name="category" id="catCustom" value="Custom">
-                        <label class="btn btn-outline-secondary rounded-pill px-3 py-1" for="catCustom" style="border-color: #e57373; color: #e57373;"><i class="fas fa-pencil-alt me-1"></i> Custom</label>
+                        <input type="radio" class="btn-check" name="category" id="catRepot" value="Repot">
+                        <label class="btn btn-outline-secondary rounded-pill px-3 py-1" for="catRepot">
+                            <i class="bi bi-box-seam me-1"></i> Repot
+                        </label>
+
+                        <input type="radio" class="btn-check" name="category" id="catCustom" value="General">
+                        <label class="btn btn-outline-secondary rounded-pill px-3 py-1" for="catCustom" style="border-color: #e57373; color: #e57373;">
+                            <i class="bi bi-check2-circle me-1"></i> Custom
+                        </label>
+
                     </div>
 
                     <div class="mb-4">
@@ -159,7 +176,7 @@
         </div>
     </div>
 </div>
-<!-- Task Details Modal -->
+
 <div class="modal fade" id="taskDetailsModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content border-0 shadow">
@@ -191,7 +208,6 @@
     </div>
 </div>
 
-<!-- DELETE CONFIRMATION MODAL -->
 <div class="modal fade" id="deletePlantModal" tabindex="-1" aria-labelledby="deletePlantModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow-lg">
@@ -216,13 +232,8 @@
     </div>
 </div>
 
-<!-- ========================================== -->
-<!-- 2. MAIN CONTENT (PAGE LAYOUT)              -->
-<!-- ========================================== -->
 <div class="container-fluid mt-4 px-lg-4">
-    <!-- Row 1: Calendar & Weather -->
     <div class="row g-4 mb-5">
-        <!-- Calendar Widget -->
         <div class="col-12 col-lg-8 col-md-7 mb-4">
             <div class="calendar-widget">
                 <div class="calendar-card bg-white p-4 h-100">
@@ -235,13 +246,11 @@
                         </div>
                     </div>
 
-                    <!-- Dynamic Custom Calendar Rendered Here -->
                     <div class="calendar-grid" id="weeklyGrid"></div>
                 </div>
             </div>
         </div>
 
-        <!-- Weather Widget -->
         <div class="col-12 col-lg-4 col-md-5 mb-4">
             <h2 class="mb-4" style="color: #0c3b2e; font-weight: bold;">Dashboard</h2>
 
@@ -272,14 +281,6 @@
         </div>
     </div>
 
-    <!-- Row 2: My Plants -->
-    @* <div class="section-title">
-        <span>My Plants</span>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addPlantModal">
-            Add Plant Manually
-        </button> *@
-    </div>
-
     <div class="horizontal-scroller mb-5">
         @if (Model != null && Model.AppUser != null)
         {
@@ -287,10 +288,13 @@
             {
                 <div class="custom-card">
                     <div class="card-img-wrapper bg-light">
-                        <img src="@myPlant.ImageUrl" alt="Monstera">
+                        <img src="@myPlant.ImageUrl" alt="@myPlant.CommonName" class="img-fluid">
+                        
                         <div class="status-icon-badge text-success btn-delete-plant " data-plant-id="@myPlant.Id" data-plant-name="@myPlant.CommonName" data-bs-toggle="modal" data-bs-target="#deletePlantModal"><i class="bi bi-x-circle-fill"></i></div>
                     </div>
-                    <a asp-controller="Plants" asp-action="Details" asp-route-id="@myPlant.Id" class="" style="text-decoration:none">
+                    <a asp-controller="Plants" asp-action="Details" asp-route-id="@myPlant.Id" asp-route-isMyPlant="true" style="text-decoration:none">
+                    
+                    
                         <h5 class="card-title">@myPlant.CommonName</h5>
                     </a>
                     <p class="card-subtitle mb-0">@myPlant.Location</p>
@@ -335,7 +339,6 @@
         </div>
     </div>
 
-    <!-- Row 3: Community Snapshots -->
     <div class="section-title mt-2">
         <span>Community Snapshots</span>
         <span class="text-muted" style="font-size: 0.8rem; font-weight: normal;">Nearby trade listings</span>
@@ -357,13 +360,13 @@
                     <div class="user-info">
                         <img src="https://placehold.co/50x50/cccccc/ffffff?text=@Listtings.OwnerName[0].ToString()" alt="User"> @Listtings.OwnerName
                     </div>
-                    <button class="btn btn-outline-custom">Trade Interest</button>
+
+                    <a asp-controller="Comunity" asp-action="Index" class="btn btn-outline-custom">Trade Interest</a>
                 </div>
             }
         }
     </div>
 
-    <!-- Row 4: Discover Plants -->
     <div class="section-title mt-2">
         <span class="text-muted" style="font-size: 0.8rem; font-weight: normal;">Nearby trade listings</span>
     </div>
@@ -381,16 +384,17 @@
             {
                 <div class="custom-card">
                     <div class="card-img-wrapper bg-light">
-                        <img src="@catalogItem.ImageUrl" alt="Monstera">
+                        <img src="@catalogItem.ImageUrl" alt="Catalog Image">
                         <div class="category-badge">
-                            Recommended: @{
-                            int g = Random.Shared.Next(0, 3);
-                            string[] option = new string[] { "LivingRoom", "Patio", "Bedroom", "Hall" };
-                            @option[g]
-                        }
-                    </div>
+                            @{
+                                string[] options = new string[] { "LivingRoom", "Patio", "Bedroom", "Hall" };
+                                string selectedOption = options[Random.Shared.Next(0, options.Length)];
+                            }
+                            Recommended: @selectedOption
+                        </div>
                 </div>
-                <a asp-controller="Plants" asp-action="Details" asp-route-id="@catalogItem.Id" class="" style="text-decoration:none">
+                    <a asp-controller="Plants" asp-action="Details" asp-route-id="@catalogItem.Id" style="text-decoration:none">
+                        
                     <h5 class="card-title">@catalogItem.CommonName</h5>
                 </a>
                 <p class="card-subtitle mb-0">@catalogItem.Location</p>
@@ -415,13 +419,12 @@
                     {
                         <span class="tag-pill pill-green">@taskWithPlant.TaskName</span>
                     }
-                    <span class="tag-pill tag-gray"></span>
-                    <span class="tag-pill tag-maroon"></span>
+              
                 </div>
 
                 <div class="m-4">
                     <input type="hidden" name="catalogId" value="1" />
-                    @if (Model.AppUser?.MyPlants?.FirstOrDefault(x => x.Id.Equals(catalogItem.Id)) != null)
+                    @if (Model.AppUser?.MyPlants?.FirstOrDefault(x => x.CommonName.Equals(catalogItem.CommonName)) != null)
                     {
                         <button type="button" class="btn btn-outline-success w-100 rounded-pill AddToGarden disabled bg-success text-white" id="@catalogItem.Id">
                             <i class="bi bi-check-circle-fill me-1"></i> ADDED
@@ -440,9 +443,6 @@
         }
 </div>
 
-<!-- ========================================== -->
-<!-- 4. SCRIPTS                                 -->
-<!-- ========================================== -->
 @section Scripts {
     <script>
         $(document).ready(function () {
@@ -469,14 +469,19 @@
                         let dayName = daysOfWeek[cellDate.getDay()];
                         let dateNum = cellDate.getDate();
 
-                        let dateStr = cellDate.getFullYear() + "-" + String(cellDate.getMonth() + 1).padStart(2, '0') + "-" + String(cellDate.getDate()).padStart(2, '0');
+                        let dayTasks = (tasks || []).filter(t => {
+                            if (!t.start) return false;
 
-                        let dayTasks = (tasks || []).filter(t => t.start && t.start.startsWith(dateStr));
+                            let taskDateObj = new Date(t.start);
+                            return taskDateObj.getFullYear() === cellDate.getFullYear() &&
+                                   taskDateObj.getMonth() === cellDate.getMonth() &&
+                                   taskDateObj.getDate() === cellDate.getDate();
+                        });
 
                         let taskHtml = '';
                         dayTasks.forEach(task => {
                             let typeSafe = task.type || "General";
-                            let colorClass = getThemeForType(task.type);
+                            let colorClass = getThemeForType(typeSafe);
                             let completedClass = task.isCompleted ? 'pill-completed' : '';
                             let titleSafe = (task.title || '').replace(/"/g, '&quot;');
                             let descSafe = (task.description || '').replace(/"/g, '&quot;');
@@ -490,7 +495,7 @@
                                      data-completed="${task.isCompleted}"
                                      title="${titleSafe}"
                                      style="cursor: pointer;">
-                                    <div class="${getIconForType(typeSafe)}"></div>${task.title}
+                                    <div class="${getIconForType(typeSafe)}"></div>${titleSafe}
                                 </div>`;
                         });
 
@@ -542,13 +547,15 @@
             });
 
             $('#btnSaveTask').off('click').on('click', function () {
-                let rawPlantId = $('#taskPlantId').val();
+
+                $(this).blur();
+                let rawPlantId = $('input[name="taskPlantId"]:checked').val();
                 let finalPlantId = (rawPlantId && rawPlantId !== "") ? parseInt(rawPlantId) : null;
 
                 var newTask = {
                     TaskName: $('#taskName').val(),
                     TaskDate: $('#taskDate').val(),
-                    Category: $('#taskCategory').val(),
+                    Category: $('input[name="category"]:checked').val(),
                     Description: $('#taskDesc').val(),
                     IsCompleted: false,
                     MyPlantId: finalPlantId

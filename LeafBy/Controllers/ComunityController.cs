@@ -214,7 +214,7 @@ namespace LeafBy.Controllers
             // Prevent users from requesting their own listings
             if (targetListing.AppUserId == currentUserId) return Json(new { success = false, message = "You cannot request your own item." });
 
-            var timestamp = DateTime.Now;
+            var timestamp = DateTime.UtcNow;
 
             var newRequest = new ListingRequest
             {

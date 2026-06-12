@@ -18,14 +18,16 @@ namespace LeafBy.Controllers
         private readonly IConfiguration _configuration;
         private readonly HttpClient _httpClient;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IWebHostEnvironment _env;
 
-        public PlantsController(ILogger<PlantsController> logger, ApplicationDbContext db, IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
+        public PlantsController(ILogger<PlantsController> logger, ApplicationDbContext db, IConfiguration configuration, IWebHostEnvironment webHostEnvironment, IWebHostEnvironment env)
         {
             _logger = logger;
             _DB = db;
             _configuration = configuration;
             _httpClient = new HttpClient();
             _webHostEnvironment = webHostEnvironment;
+            _env = env;
         }
 
         // Updated to accept an Ecosystem type
@@ -125,7 +127,11 @@ namespace LeafBy.Controllers
                 Location = gardenTask.Ecosystem, // Storing if it's an Aquatic or Soil plant
                 Nickname = plant.Nickname,
                 SunRequirement = plant.SunRequirement,
-                WaterRequirement = plant.WaterRequirement
+                WaterRequirement = plant.WaterRequirement,
+                SoilMix = plant.SoilMix,
+                CareProfile = plant.CareProfile,
+                HomeRemedies = plant.HomeRemedies
+
             };
             //plantToBeAdded.Id = null;
             
@@ -243,14 +249,14 @@ namespace LeafBy.Controllers
 
             if (ecosystem == "Aquatic")
             {
-                tasks.Add(new CalenderTask { AppUserId = userId, MyPlantId = personalPlantId, TaskName = "Check Pond Filter", Category = "Maintenance", TaskDate = DateTime.Now.AddDays(7) });
-                tasks.Add(new CalenderTask { AppUserId = userId, MyPlantId = personalPlantId, TaskName = "Feed Molly/Platy Fish", Category = "Feeding", TaskDate = DateTime.Now.AddDays(1) });
-                tasks.Add(new CalenderTask { AppUserId = userId, MyPlantId = personalPlantId, TaskName = "Inspect Lotus Root Growth", Category = "Maintenance", TaskDate = DateTime.Now.AddDays(14) });
+                tasks.Add(new CalenderTask { AppUserId = userId, MyPlantId = personalPlantId, TaskName = "Check Pond Filter", Category = "Maintenance", TaskDate = DateTime.UtcNow.AddDays(7) });
+                tasks.Add(new CalenderTask { AppUserId = userId, MyPlantId = personalPlantId, TaskName = "Feed Molly/Platy Fish", Category = "Feeding", TaskDate = DateTime.UtcNow.AddDays(1) });
+                tasks.Add(new CalenderTask { AppUserId = userId, MyPlantId = personalPlantId, TaskName = "Inspect Lotus Root Growth", Category = "Maintenance", TaskDate = DateTime.UtcNow.AddDays(14) });
             }
             else
             {
-                tasks.Add(new CalenderTask { AppUserId = userId, MyPlantId = personalPlantId, TaskName = "Check Soil Moisture", Category = "Water", TaskDate = DateTime.Now.AddDays(2) });
-                tasks.Add(new CalenderTask { AppUserId = userId, MyPlantId = personalPlantId, TaskName = "Apply Liquid Fertilizer", Category = "Fertilize", TaskDate = DateTime.Now.AddDays(14) });
+                tasks.Add(new CalenderTask { AppUserId = userId, MyPlantId = personalPlantId, TaskName = "Check Soil Moisture", Category = "Water", TaskDate = DateTime.UtcNow.AddDays(2) });
+                tasks.Add(new CalenderTask { AppUserId = userId, MyPlantId = personalPlantId, TaskName = "Apply Liquid Fertilizer", Category = "Fertilize", TaskDate = DateTime.UtcNow.AddDays(14) });
             }
 
             _DB.CalendarTasks.AddRange(tasks);
@@ -258,80 +264,74 @@ namespace LeafBy.Controllers
         }
         // GET: /Plants/Details/1
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
+   public async Task<IActionResult> Details(int id, bool isMyPlant = false)
+{
+    var viewModel = new PlantDetailViewModel();
+
+    if (isMyPlant)
+    {
+        // ==========================================
+        // 1. LOGIC FOR MY PLANTS (User's Garden)
+        // ==========================================
+        var userPlant = await _DB.Plants
+            .Include(p => p.SoilMix)
+            .Include(p => p.HomeRemedies)
+            .Include(p => p.CareProfile)
+            .FirstOrDefaultAsync(p => p.Id == id);
+
+        if (userPlant == null) return NotFound();
+
+        // Map to ViewModel's expected Catalog shape
+        viewModel.Plant = new PlantCatalog
         {
-            // 1. Fetch the main plant with its linked Soil and Remedies
-            var plant = await _DB.PlantCatalog
-                .Include(p => p.SoilMix)
-                .Include(p => p.HomeRemedies)
-                .FirstOrDefaultAsync(p => p.Id == id);
+            Id = userPlant.Id,
+            CommonName = userPlant.CommonName ?? "Unknown Plant",
+            ScientificName = userPlant.ScientificName ?? "",
+            ImageUrl = userPlant.ImageUrl,
+            SoilMix = userPlant.SoilMix,
+            CareProfile = userPlant.CareProfile,
+            HomeRemedies = userPlant.HomeRemedies ?? new List<HomeRemdy>()
+        };
 
-            if (plant == null)
-            {
-                var userPlant = await _DB.Plants
-        .Include(p => p.SoilMix)
-        .Include(p => p.HomeRemedies)
-        .Include(p => p.CareProfile)
-        .FirstOrDefaultAsync(p => p.Id == id);
+        viewModel.CareProfile = userPlant.CareProfile ?? new PlantCareProfile();
+        viewModel.Soil = userPlant.SoilMix ?? new SoilMix();
+    }
+    else
+    {
+        // ==========================================
+        // 2. LOGIC FOR PLANT CATALOG (Encyclopedia)
+        // ==========================================
+        var catalogPlant = await _DB.PlantCatalog
+            .Include(p => p.SoilMix)
+            .Include(p => p.HomeRemedies)
+            .FirstOrDefaultAsync(p => p.Id == id);
 
-                // 3. If we found it in the user's plants, manually map it to a PlantCatalog shape
-                if (userPlant != null)
-                {
-                    plant = new PlantCatalog
-                    {
-                        Id = userPlant.Id,
-                        CommonName = userPlant.CommonName ?? "Unknown Plant",
-                        ScientificName = userPlant.ScientificName ?? "",
-                        ImageUrl = userPlant.ImageUrl,
+        if (catalogPlant == null) return NotFound();
 
-                        // Link the complex data directly
-                        SoilMix = userPlant.SoilMix,
-                        CareProfile = userPlant.CareProfile,
+        var careProfile = await _DB.PlantCareProfiles
+            .FirstOrDefaultAsync(c => c.PlantCatalogId == id) ?? new PlantCareProfile();
 
-                        // HomeRemedies is a list, so we map it over
-                        HomeRemedies = userPlant.HomeRemedies ?? new List<HomeRemdy>()
-                    };
+        viewModel.Plant = catalogPlant;
+        viewModel.CareProfile = careProfile;
+        viewModel.Soil = catalogPlant.SoilMix ?? new SoilMix();
+    }
 
-                    // NOTE: If your View uses other properties from PlantCatalog like 
-                    // Description, Sunlight, etc., make sure to map them right here too!
-                    // Example: Description = "User's personal plant", 
-                }
-            }
-            if (plant == null)
-            {
-                return NotFound();
-            }   
-            // 2. Fetch the sidecar Care Profile
-            var careProfile = await _DB.PlantCareProfiles
-                .FirstOrDefaultAsync(c => c.PlantCatalogId == id)
-                ?? new PlantCareProfile(); // Fallback if no profile exists
+    // ==========================================
+    // 3. SHARED LOGIC (Remedies Mapping)
+    // ==========================================
+    var remedies = viewModel.Plant.HomeRemedies ?? new List<HomeRemdy>();
 
-            // 3. Map to ViewModel
-            var viewModel = new PlantDetailViewModel
-            {
-                Plant = plant,
-                CareProfile = careProfile,
-                Soil = plant.SoilMix ?? new SoilMix(),
-                // Safely grab the first commercial and organic remedies
-                CommercialFertilizer = plant.HomeRemedies.FirstOrDefault(r => r.Type == "Fertilizer" || r.Type == "Commercial") ?? new HomeRemdy(),
-                OrganicRemedy = plant.HomeRemedies.FirstOrDefault(r => r.Type == "Organic") ?? new HomeRemdy()
-            };
+    viewModel.CommercialFertilizer = remedies.FirstOrDefault(r => r.Type == "Fertilizer" || r.Type == "Commercial") ?? new HomeRemdy();
+    viewModel.OrganicRemedy = remedies.FirstOrDefault(r => r.Type == "Organic") ?? new HomeRemdy();
 
-            if(viewModel.OrganicRemedy.Title == "")
-            {
-                    var Hr =  plant.HomeRemedies.FirstOrDefault(x=> x.Title!= null);
-                viewModel.OrganicRemedy = Hr;
+    // Fallback if no organic remedy is found
+    if (string.IsNullOrEmpty(viewModel.OrganicRemedy.Title))
+    {
+        viewModel.OrganicRemedy = remedies.FirstOrDefault(x => x.Title != null) ?? new HomeRemdy();
+    }
 
-            }
-            if(viewModel.CareProfile.Plant == null)
-            {
-                    
-                viewModel.CareProfile = plant.CareProfile; ;
-
-            }
-            return View(viewModel);
-        }
-        // 2. Smart Climate Predictor
+    return View(viewModel);
+}     // 2. Smart Climate Predictor
         [HttpGet]
         public async Task<IActionResult> GetSmartClimateAdvice()
         {
@@ -395,49 +395,27 @@ namespace LeafBy.Controllers
             {
                 try
                 {
+                    // 1. Clean the Base64 string
                     if (Base64Image.Contains(","))
-                    {
                         Base64Image = Base64Image.Substring(Base64Image.IndexOf(",") + 1);
-                    }
+
                     Base64Image = Base64Image.Replace(" ", "+").Trim();
 
-                    int mod4 = Base64Image.Length % 4;
-                    if (mod4 > 0)
-                    {
-                        Base64Image += new string('=', 4 - mod4);
-                    }
-
-                    // --- THE NEW NAMING LOGIC ---
-                    // Grab the name (or a default if the AI failed)
-                    string rawName = string.IsNullOrWhiteSpace(model.CommonName) ? "UnknownPlant" : model.CommonName;
-
-                    // Remove invalid characters and replace spaces with underscores
-                    string safeName = string.Join("_", rawName.Split(Path.GetInvalidFileNameChars())).Replace(" ", "_");
-
-                    // Add a timestamp so multiple plants with the same name don't overwrite each other
-                    string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
-                    string uniqueFileName = $"{safeName}_{timestamp}.jpg";
-                    // Result example: "Monstera_Deliciosa_20260611143025.jpg"
-                    // ----------------------------
-
-                    string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "plants", uniqueFileName);
-
-                    byte[] imageBytes = Convert.FromBase64String(Base64Image);
-                    await System.IO.File.WriteAllBytesAsync(filePath, imageBytes);
-
-                    model.ImageUrl = "/images/plants/" + uniqueFileName;
+                    // 2. Format as a Data URI
+                    // This variable 'model.ImageUrl' now holds the image regardless of the environment
+                    model.ImageUrl = $"data:image/jpeg;base64,{Base64Image}";
                 }
-                catch (FormatException ex)
+                catch (Exception ex)
                 {
-                    Console.WriteLine("CRITICAL BASE64 ERROR: " + ex.Message);
+                    // Fallback for any environment
                     model.ImageUrl = "https://placehold.co/150x150/12372A/ffffff?text=Image+Error";
                 }
             }
             else
             {
+                // Fallback for any environment
                 model.ImageUrl = "https://placehold.co/150x150/12372A/ffffff?text=No+Photo";
             }
-
             // 3. MAP THE AI DATA TO THIS SPECIFIC PHYSICAL PLANT
             if (!string.IsNullOrWhiteSpace(RawAiJson))
             {

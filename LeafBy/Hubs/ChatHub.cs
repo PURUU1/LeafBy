@@ -23,7 +23,7 @@ namespace LeafBy.Hubs
         public async Task SendDirectMessage(string receiverUsername, string message)
         {
             var senderUsername = Context.User.Identity.Name;
-            var timestamp = DateTime.Now;
+            var timestamp = DateTime.UtcNow;
 
             // 1. Save to SQL Database
             var dm = new DirectMessage

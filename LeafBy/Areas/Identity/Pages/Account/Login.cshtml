@@ -26,7 +26,7 @@
         <div class="mb-4">
             <label asp-for="Input.Email" class="super-label">Email Address</label>
             <div class="position-relative">
-                <i class="bi bi-envelope position-absolute text-muted" style="left: 12px; top: 12px;"></i>
+                <i class="bi bi-envelope position-absolute text-white" style="left: 12px; top: 12px;"></i>
                 <input asp-for="Input.Email" class="input-dark ps-5" autocomplete="username" placeholder="you@example.com" />
             </div>
             <span asp-validation-for="Input.Email" class="text-danger small mt-1 d-block"></span>
@@ -38,7 +38,7 @@
                 <a asp-page="./ForgotPassword" class="super-label mb-0 text-decoration-none">Forgot Password?</a>
             </div>
             <div class="position-relative">
-                <i class="bi bi-lock position-absolute text-muted" style="left: 12px; top: 12px;"></i>
+                <i class="bi bi-lock position-absolute text-white" style="left: 12px; top: 12px;"></i>
                 <input asp-for="Input.Password" class="input-dark ps-5" autocomplete="current-password" placeholder="••••••••" />
             </div>
             <span asp-validation-for="Input.Password" class="text-danger small mt-1 d-block"></span>

@@ -112,8 +112,8 @@
     </div>
        @if (ViewBag.HideSidebar != true)
     {
-        <div style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; align-items: flex-end;">
-            <button type="button" class="btn shadow-lg rounded-pill d-flex align-items-center justify-content-center px-4" data-bs-toggle="modal" data-bs-target="#scannerModal" style="background-color: #d84315; color: white; height: 50px; font-weight: 600; border: none;">
+        <div style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; align-items: flex-end;" id="scbtn">
+            <button type="button" class="scbtn btn shadow-lg rounded-pill d-flex align-items-center justify-content-center px-4" data-bs-toggle="modal" data-bs-target="#scannerModal" style="background-color: #d84315; color: white; height: 50px; font-weight: 600; border: none;">
             <i class="bi bi-upc-scan me-2"></i> Scan
         </button>
 
@@ -798,6 +798,35 @@ $(document).on('click', function(e) {
             return new File([u8arr], filename, {type:mime});
         }
     });
+
+</script>
+<script>
+            $(document).ready(function () {
+
+            // Trigger when any modal starts to open
+            $('.modal').on('show.bs.modal', function () {
+                $('#scbtn').fadeOut(200); // Hides the button smoothly
+            });
+
+            // Trigger when any modal finishes closing
+            $('.modal').on('hidden.bs.modal', function () {
+                $('#scbtn').fadeIn(200); // Brings the button back
+            });
+
+
+
+
+                $('#btnStartScan').click(function () {
+            // 1. Get the modal instance this button lives in
+            var modalElement = $(this).closest('.modal');
+
+            // 2. Hide the modal using Bootstrap's built-in hide method
+            var modal = bootstrap.Modal.getInstance(modalElement[0]);
+            if (modal) {
+                modal.hide();
+            }
+        });
+        });
 </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
