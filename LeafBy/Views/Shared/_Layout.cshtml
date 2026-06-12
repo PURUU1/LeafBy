@@ -15,6 +15,26 @@
     @await RenderSectionAsync("Styles", required: false)
 
     <style>
+        /* Fix for mobile keyboard/viewport issues */
+        #botanistChatPanel {
+            /* Use dvh (Dynamic Viewport Height) for mobile browser address bars */
+            height: 100dvh !important;
+            /* display: flex; */
+            flex-direction: column;
+        }
+
+        #chatHistory {
+            /* Critical: This makes the chat area grow to fill available space */
+            flex-grow: 1;
+            overflow-y: auto;
+            /* Smooth scrolling */
+            scroll-behavior: smooth;
+        }
+
+        /* Ensure input container is always at the bottom */
+        .input-group {
+            padding-bottom: env(safe-area-inset-bottom); /* Handles iPhone notches */
+        }
         /* Container for the chat area */
         #chatHistory {
             display: flex;
@@ -111,7 +131,12 @@
                     <button class="btn d-lg-none p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
                         <i class="bi bi-list fs-1" style="color: #12372A;"></i>
                     </button>
+                    <a href="@Url.Action("Index", "Home")">
+
+
                         <img src="~/images/logo-green.svg" width="70px" />
+                        </a>
+                        
                     <div class="d-none d-sm-block ">
                         <h3 class="mb-0 fw-bold" style="color: #12372A;">LeafBy Hub</h3>
                         <div class="text-muted small">Hello, @User.Identity?.Name</div>
@@ -850,43 +875,39 @@ $(document).on('click', function(e) {
         });
 </script>
 <script>
-            $(document).ready(function() {
+                   $(document).ready(function() {
             const $chatHistory = $('#chatHistory');
             const $scrollBtn = $('#btnScrollToBottom');
 
-            // Function to scroll to bottom
+            // SCROLL LOGIC
             function scrollToBottom() {
-                $chatHistory.scrollTop($chatHistory[0].scrollHeight);
+                $chatHistory.animate({ scrollTop: $chatHistory[0].scrollHeight }, 300);
             }
 
-            // Auto-scroll when a new message is added
-            // (Call this function after you append a new message in your ajax success)
-            function onNewMessage() {
-                scrollToBottom();
-            }
-
-            // Detect if user scrolls up
-            $chatHistory.scroll(function() {
-                let scrollTop = $(this).scrollTop();
-                let scrollHeight = $(this)[0].scrollHeight;
-                let clientHeight = $(this).height();
-
-                // If user is not near the bottom (within 100px), show the button
-                if (scrollHeight - scrollTop - clientHeight > 100) {
+            // Detect Scroll: Show button only if user is NOT at the bottom
+            $chatHistory.on('scroll', function() {
+                let isAtBottom = $chatHistory[0].scrollHeight - $chatHistory.scrollTop() <= $chatHistory.outerHeight() + 50;
+                if (!isAtBottom) {
                     $scrollBtn.fadeIn();
                 } else {
                     $scrollBtn.fadeOut();
                 }
             });
 
-            // Clicking the floating button scrolls to bottom
-            $scrollBtn.click(function() {
+            // Button click
+            $scrollBtn.on('click', function() {
                 scrollToBottom();
-                $scrollBtn.fadeOut();
             });
 
-            // Initial scroll
-            scrollToBottom();
+            // --- INTEGRATION: Call scrollToBottom inside your AJAX success ---
+            // In your sendMessage function:
+            // ... after appending response ...
+            // scrollToBottom();
+                    $('#chatInput').on('focus', function() {
+            setTimeout(function() {
+                scrollToBottom();
+            }, 300); // Small delay to wait for keyboard animation
+        });
         });
 </script>
     @await RenderSectionAsync("Scripts", required: false)

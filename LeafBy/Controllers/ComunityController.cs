@@ -152,26 +152,44 @@ namespace LeafBy.Controllers
             _DB.SaveChanges();
             return Json(new { success = true, message = "Listing updated successfully!" });
         }
-
         public class DeleteListingRequest { public int Id { get; set; } }
-
+        [HttpPost]
         [HttpPost]
         public IActionResult DeleteListing([FromBody] DeleteListingRequest request)
         {
             string currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            // 1. Fetch the listing
             var existingListing = _DB.CommunityListings.FirstOrDefault(l => l.Id == request.Id);
 
-            // Security check: Only the owner can delete their listing
             if (existingListing == null || existingListing.AppUserId != currentUserId)
             {
                 return Json(new { success = false, message = "Unauthorized or listing not found." });
             }
 
-            _DB.CommunityListings.Remove(existingListing);
-            _DB.SaveChanges();
+            try
+            {
+                // 2. Find and remove all dependent records in the ListingRequests table
+                // We filter by the ListingId (or however your foreign key is named)
+                var dependentRequests = _DB.ListingRequests.Where(r => r.ComunityListingId == request.Id);
 
-            return Json(new { success = true, message = "Listing deleted." });
+                if (dependentRequests.Any())
+                {
+                    _DB.ListingRequests.RemoveRange(dependentRequests);
+                }
+
+                // 3. Now it is safe to remove the parent record
+                _DB.CommunityListings.Remove(existingListing);
+
+                // 4. Save all changes in one transaction
+                _DB.SaveChanges();
+
+                return Json(new { success = true, message = "Listing and all associated requests deleted." });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Database Error: " + ex.Message });
+            }
         }
 
         // --- DISTANCE CALCULATION HELPER ---
