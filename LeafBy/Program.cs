@@ -92,7 +92,6 @@ app.MapRazorPages()
 // ── Plant Catalog Seeder (downloads images + inserts plants) ──────────────────
 await PlantCatalogSeeder.SeedAsync(app.Services);
 
-// To ensure the identity inserts are respected
 
 app.MapHub<LeafBy.Hubs.ChatHub>("/chatHub");
 app.Run();
