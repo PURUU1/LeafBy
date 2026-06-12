@@ -15,6 +15,21 @@
     @await RenderSectionAsync("Styles", required: false)
 
     <style>
+        /* Container for the chat area */
+        #chatHistory {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 60px; /* Space for input */
+        }
+
+        /* The floating scroll-to-bottom button */
+        #btnScrollToBottom {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            z-index: 10001;
+            display: none; /* Hidden by default */
+        }
         #loadingOverlay {
             position: fixed;
             top: 0;
@@ -123,6 +138,7 @@
     </div>
     }
     <div class="collapse collapse-horizontal shadow-lg" id="botanistChatPanel" style="position: fixed; top: 0; right: 0; height: 100vh; z-index: 10000; background-color: #FBFADA;">
+       
         <div class="d-flex flex-column h-100" style="width: 100vw; max-width: 400px; border-left: 1px solid rgba(173, 188, 159, 0.3);">
             <div class="p-3 d-flex justify-content-between align-items-center text-white shadow-sm" style="background-color: #12372A;">
                 <h5 class="mb-0 fw-bold"><i class="bi bi-robot me-2"></i> Leafy (AI Botanist)</h5>
@@ -146,7 +162,12 @@
                 </div>
             </div>
         </div>
+        <button class="btn btn-sm btn-dark rounded-circle shadow" id="btnScrollToBottom">
+            <i class="bi bi-chevron-down"></i>
+        </button>
     </div>
+
+
 
     <div class="modal fade" id="scannerModal" tabindex="-1" aria-hidden="true" style="z-index: 10500;">
         <div class="modal-dialog modal-dialog-centered modal-md">
@@ -826,6 +847,46 @@ $(document).on('click', function(e) {
                 modal.hide();
             }
         });
+        });
+</script>
+<script>
+            $(document).ready(function() {
+            const $chatHistory = $('#chatHistory');
+            const $scrollBtn = $('#btnScrollToBottom');
+
+            // Function to scroll to bottom
+            function scrollToBottom() {
+                $chatHistory.scrollTop($chatHistory[0].scrollHeight);
+            }
+
+            // Auto-scroll when a new message is added
+            // (Call this function after you append a new message in your ajax success)
+            function onNewMessage() {
+                scrollToBottom();
+            }
+
+            // Detect if user scrolls up
+            $chatHistory.scroll(function() {
+                let scrollTop = $(this).scrollTop();
+                let scrollHeight = $(this)[0].scrollHeight;
+                let clientHeight = $(this).height();
+
+                // If user is not near the bottom (within 100px), show the button
+                if (scrollHeight - scrollTop - clientHeight > 100) {
+                    $scrollBtn.fadeIn();
+                } else {
+                    $scrollBtn.fadeOut();
+                }
+            });
+
+            // Clicking the floating button scrolls to bottom
+            $scrollBtn.click(function() {
+                scrollToBottom();
+                $scrollBtn.fadeOut();
+            });
+
+            // Initial scroll
+            scrollToBottom();
         });
 </script>
     @await RenderSectionAsync("Scripts", required: false)
