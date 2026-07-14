@@ -15,14 +15,14 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddAuthentication()
-    .AddGoogle(options =>
-    {
-        // This automatically picks up Google__ClientId from Render's Environment Variables
-        options.ClientId = builder.Configuration["Google:ClientId"];
-        options.ClientSecret = builder.Configuration["Google:ClientSecret"];
-        options.CallbackPath = "/signin-google";
-    });
+//b7uilder.Services.AddAuthentication()
+//    .AddGoogle(options =>
+//    {
+//        // This automatically picks up Google__ClientId from Render's Environment Variables
+//        options.ClientId = builder.Configuration["Google:ClientId"];
+//        options.ClientSecret = builder.Configuration["Google:ClientSecret"];
+//        options.CallbackPath = "/signin-google";
+//    });
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<LeafBy.Data.PerenualApiService>();
 builder.Services.AddDistributedMemoryCache();
