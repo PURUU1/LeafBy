@@ -22,7 +22,7 @@ builder.Services.AddAuthentication()
         options.CallbackPath = "/signin-google";
     });
 builder.Services.AddHttpClient();
-builder.Services.AddScoped<LeafBy.Data.PerenualApiService>();
+//builder.Services.AddScoped<LeafBy.Data.PerenualApiService>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options => {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -88,7 +88,7 @@ app.MapRazorPages()
 //}
 
 // ── Plant Catalog Seeder (downloads images + inserts plants) ──────────────────
-await PlantCatalogSeeder.SeedAsync(app.Services);
+//await PlantCatalogSeeder.SeedAsync(app.Services);
 
 
 app.MapHub<LeafBy.Hubs.ChatHub>("/chatHub");
