@@ -22,7 +22,7 @@ builder.Services.AddAuthentication()
         options.CallbackPath = "/signin-google";
     });
 builder.Services.AddHttpClient();
-//builder.Services.AddScoped<LeafBy.Data.PerenualApiService>();
+builder.Services.AddScoped<LeafBy.Data.PerenualApiService>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options => {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
