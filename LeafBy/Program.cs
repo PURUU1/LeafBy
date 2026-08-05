@@ -92,4 +92,6 @@ app.MapRazorPages()
 
 
 app.MapHub<LeafBy.Hubs.ChatHub>("/chatHub");
+// Add this in Program.cs before app.Run()
+app.MapGet("/health", () => Results.Ok("Website is awake!"));
 app.Run();
