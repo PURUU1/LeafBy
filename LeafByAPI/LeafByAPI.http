@@ -1,6 +1,0 @@
-@LeafByAPI_HostAddress = http://localhost:5184
-
-GET {{LeafByAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
