@@ -52,13 +52,13 @@ namespace LeafBy.Controllers
                 });
             }
 
-            // 3. Add User Prompt
+            // 3. Add User  
             history.Add(new NvidiaMessage { Role = "user", Content = request.Prompt });
 
             // 4. Prepare Payload for NVIDIA NIM
             var payload = new
             {
-                model = "meta/llama-3.1-70b-instruct",
+                model = "nvidia/nemotron-3.5-lightning-30b-a3b",
                 messages = history,
                 temperature = 0.5,
                 max_tokens = 1024
